@@ -204,16 +204,25 @@ const CheckoutPage = () => {
               <h2 className="text-lg font-semibold text-gray-900 mb-4">Order Summary</h2>
               
               <div className="space-y-4">
-                {cartItems.map(item => (
-                  <div key={item.product.id} className="flex justify-between text-sm">
-                    <span className="text-gray-600">
-                      {item.quantity} × {item.product.name}
-                    </span>
-                    <span className="font-medium">
-                      ₹{item.product.price * item.quantity}/-
-                    </span>
-                  </div>
-                ))}
+                {cartItems.map(item => {
+                  const singlePrice = item.product.price;
+                  const totalPrice = singlePrice * item.quantity;
+                  
+                  return (
+                    <div key={item.product.id} className="text-sm mb-2">
+                      <div className="font-medium">{item.product.name}</div>
+                      <div className="flex justify-between text-gray-600 pl-2">
+                        <span>₹{singlePrice}/- × {item.quantity}</span>
+                        <span>= ₹{totalPrice}/-</span>
+                      </div>
+                      {item.product.originalPrice > singlePrice && (
+                        <div className="text-xs text-green-600 pl-2">
+                          You save ₹{(item.product.originalPrice - singlePrice) * item.quantity}/-
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
 
               {calculateSavings() > 0 && (

@@ -71,6 +71,15 @@ const CheckoutPage = () => {
     return cartItems.reduce((total, item) => total + (item.product.price * item.quantity), 0);
   };
 
+  const calculateGST = () => {
+    const total = calculateTotal();
+    return Math.round(total * 0.18); // 18% GST
+  };
+
+  const calculateTotalWithGST = () => {
+    return calculateTotal() + calculateGST();
+  };
+
   const calculateSavings = () => {
     return cartItems.reduce((savings, item) => {
       if (item.product.originalPrice > item.product.price) {
@@ -86,7 +95,7 @@ const CheckoutPage = () => {
       return `${item.quantity}x ${item.product.name} - ₹${itemTotal}/-`;
     }).join('%0A');
 
-    const totalAmount = calculateTotal();
+    const totalAmount = calculateTotalWithGST();
     const totalSavings = calculateSavings();
 
     let message = `Hello! I'm interested in placing an order for:%0A%0A${orderItems}%0A%0A`;
@@ -95,7 +104,10 @@ const CheckoutPage = () => {
       message += `Total Savings: ₹${totalSavings}/-%0A`;
     }
     
-    message += `Total Amount: ₹${totalAmount}/-%0A%0APlease contact me to proceed.`;
+    message += `Subtotal: ₹${calculateTotal()}/-%0A`;
+    message += `GST (18%): ₹${calculateGST()}/-%0A`;
+    message += `*Freight charges extra%0A`;
+    message += `Total Amount (incl. GST): ₹${totalAmount}/-%0A%0APlease contact me to proceed.`;
     
     window.open(`https://wa.me/919911231643?text=${message}`, '_blank');
     setCartItems([]);
@@ -234,10 +246,21 @@ const CheckoutPage = () => {
                 </div>
               )}
 
-              <div className="mt-6 pt-6 border-t border-gray-200">
-                <div className="flex justify-between text-lg font-semibold text-gray-900">
-                  <span>Total</span>
+              <div className="mt-4 pt-4 border-t border-gray-200 space-y-2">
+                <div className="flex justify-between text-sm text-gray-600">
+                  <span>Subtotal</span>
                   <span>₹{calculateTotal()}/-</span>
+                </div>
+                <div className="flex justify-between text-sm text-gray-600">
+                  <span>GST (18%)</span>
+                  <span>₹{calculateGST()}/-</span>
+                </div>
+                <div className="mt-2 text-xs text-gray-500 italic text-center">
+                  *Freight charges extra
+                </div>
+                <div className="flex justify-between text-lg font-semibold text-gray-900 pt-2 border-t border-gray-200 mt-2">
+                  <span>Total</span>
+                  <span>₹{calculateTotalWithGST()}/-</span>
                 </div>
               </div>
 

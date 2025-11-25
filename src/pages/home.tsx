@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Search, ShoppingCart, Menu, Phone, CheckCircle, ArrowLeft } from 'lucide-react';
+import { Search, ShoppingCart, Menu, Phone, CheckCircle, ArrowLeft, Plus, Minus } from 'lucide-react';
 
 // Define product type
 interface Product {
@@ -30,6 +30,7 @@ const Home = () => {
   const [showCartPopup, setShowCartPopup] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const [quantities, setQuantities] = useState<Record<number, number>>({});
 
   // Handle search
   const handleSearch = (e: React.FormEvent) => {
@@ -44,6 +45,26 @@ const Home = () => {
     } else {
       setFilteredProducts([]);
     }
+  };
+
+  // Quantity handlers
+  const increaseQuantity = (productId: number, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setQuantities(prev => ({
+      ...prev,
+      [productId]: (prev[productId] || 1) + 1
+    }));
+  };
+
+  const decreaseQuantity = (productId: number, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setQuantities(prev => {
+      const currentQty = prev[productId] || 1;
+      return {
+        ...prev,
+        [productId]: Math.max(1, currentQty - 1)
+      };
+    });
   };
 
   // Sample products data
@@ -94,6 +115,8 @@ const Home = () => {
   const addToCart = (product: Product, e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
+    const quantity = quantities[product.id] || 1;
+    
     const updatedCart = (prevCart: CartItem[]) => {
       const existingItem = prevCart.find(item => item.product.id === product.id);
       let newCart;
@@ -101,11 +124,11 @@ const Home = () => {
       if (existingItem) {
         newCart = prevCart.map(item =>
           item.product.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
+            ? { ...item, quantity: item.quantity + quantity }
             : item
         );
       } else {
-        newCart = [...prevCart, { product, quantity: 1 }];
+        newCart = [...prevCart, { product, quantity }];
       }
       
       // Save to localStorage
@@ -119,6 +142,9 @@ const Home = () => {
     setCart(updatedCart);
     setShowCartPopup(true);
     setTimeout(() => setShowCartPopup(false), 3000);
+    
+    // Reset quantity after adding to cart
+    setQuantities(prev => ({ ...prev, [product.id]: 1 }));
   };
 
   // Calculate total items in cart
@@ -184,7 +210,7 @@ const Home = () => {
 
           {/* Right Side Icons */}
           <div className="flex items-center space-x-4">
-            <div className="relative ">
+            <div className="relative">
               <Link to="/checkout" className="relative">
                 <ShoppingCart className="h-6 w-6 text-gray-700" />
                 {cartItemCount > 0 && (
@@ -283,9 +309,38 @@ const Home = () => {
                     <span className="text-green-700 font-bold">₹{product.price}/-</span>
                     <span className="ml-2 text-gray-400 text-sm line-through">₹{product.originalPrice}/-</span>
                     <span className="ml-2 text-xs bg-green-100 text-green-800 px-2 py-0.5 rounded-full">
-                      Save {Math.round(((product.price - product.originalPrice) / product.originalPrice * 100))}%
+                      Save {Math.round(((product.originalPrice - product.price) / product.originalPrice * 100))}%
                     </span>
                   </div>
+                  
+                  {/* Quantity Selector */}
+                  <div className="flex items-center mt-3 mb-2">
+                    <button
+                      onClick={(e) => decreaseQuantity(product.id, e)}
+                      className="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-l-md bg-gray-100 hover:bg-gray-200"
+                    >
+                      <Minus className="h-4 w-4" />
+                    </button>
+                    <div className="w-10 h-8 flex items-center justify-center border-t border-b border-gray-300 bg-white text-center text-sm">
+                      {quantities[product.id] || 1}
+                    </div>
+                    <button
+                      onClick={(e) => increaseQuantity(product.id, e)}
+                      className="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-r-md bg-gray-100 hover:bg-gray-200"
+                    >
+                      <Plus className="h-4 w-4" />
+                    </button>
+                  </div>
+                  
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      addToCart(product, e);
+                    }}
+                    className="w-full bg-green-800 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-md transition duration-300"
+                  >
+                    Add to Cart
+                  </button>
                 </div>
               </div>
             ))}
@@ -366,15 +421,35 @@ const Home = () => {
                       <span className="text-green-700 font-bold">₹{product.price}/-</span>
                       <span className="ml-2 text-gray-400 text-sm line-through">₹{product.originalPrice}/-</span>
                       <span className="ml-2 text-xs bg-green-100 text-green-800 px-2 py-0.5 rounded-full">
-                        Save {Math.round(((product.price - product.originalPrice) / product.originalPrice * 100))}%
+                        Save {Math.round(((product.originalPrice - product.price) / product.originalPrice * 100))}%
                       </span>
                     </div>
+                    
+                    {/* Quantity Selector */}
+                    <div className="flex items-center mt-3 mb-2">
+                      <button
+                        onClick={(e) => decreaseQuantity(product.id, e)}
+                        className="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-l-md bg-gray-100 hover:bg-gray-200"
+                      >
+                        <Minus className="h-4 w-4" />
+                      </button>
+                      <div className="w-10 h-8 flex items-center justify-center border-t border-b border-gray-300 bg-white text-center text-sm">
+                        {quantities[product.id] || 1}
+                      </div>
+                      <button
+                        onClick={(e) => increaseQuantity(product.id, e)}
+                        className="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-r-md bg-gray-100 hover:bg-gray-200"
+                      >
+                        <Plus className="h-4 w-4" />
+                      </button>
+                    </div>
+                    
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
                         addToCart(product, e);
                       }}
-                      className="w-full mt-3 bg-green-800 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-md transition duration-300"
+                      className="w-full bg-green-800 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-md transition duration-300"
                     >
                       Add to Cart
                     </button>

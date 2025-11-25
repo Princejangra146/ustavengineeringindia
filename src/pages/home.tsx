@@ -53,7 +53,7 @@ const Home = () => {
       name: "AVR (UEI-01)",
       description: "Automatic Voltage Regulator",
       price: 550,
-      originalPrice: 660,
+      originalPrice: 688,
       image: "/UEI.png"
     },
     {
@@ -184,7 +184,7 @@ const Home = () => {
 
           {/* Right Side Icons */}
           <div className="flex items-center space-x-4">
-            <div className="relative hidden md:block">
+            <div className="relative ">
               <Link to="/checkout" className="relative">
                 <ShoppingCart className="h-6 w-6 text-gray-700" />
                 {cartItemCount > 0 && (

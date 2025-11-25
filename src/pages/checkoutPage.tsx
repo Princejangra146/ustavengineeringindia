@@ -123,7 +123,7 @@ const CheckoutPage = () => {
             {cartItems.map((item) => (
               <div key={item.product.id} className="border-b pb-4">
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-4 flex-1">
+                  <div className="flex items-center space-x-2 sm:space-x-4 flex-1 overflow-hidden">
                     <div className="h-20 w-20 bg-gray-100 rounded-lg flex-shrink-0">
                       <img
                         src={item.product.image}
@@ -132,13 +132,13 @@ const CheckoutPage = () => {
                       />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h3 className="text-base font-medium text-gray-900 truncate">
+                      <h3 className="text-sm sm:text-base font-medium text-gray-900 truncate">
                         {item.product.name}
                       </h3>
                     </div>
                   </div>
 
-                  <div className="flex items-center space-x-2 ml-4">
+                  <div className="flex items-center space-x-1 sm:space-x-2 ml-2 sm:ml-4">
                     <button
                       onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
                       className="p-1 rounded-full hover:bg-gray-100"
@@ -158,7 +158,7 @@ const CheckoutPage = () => {
 
                   <button
                     onClick={() => removeItem(item.product.id)}
-                    className="ml-4 text-red-500 hover:text-red-700"
+                    className="ml-2 sm:ml-4 px-2 py-1 sm:px-3 sm:py-1 text-sm sm:text-base text-red-500 hover:text-red-700 hover:bg-red-50 rounded transition-colors whitespace-nowrap"
                     aria-label="Remove item"
                   >
                     Remove

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Search, ShoppingCart, Menu, Phone, CheckCircle } from 'lucide-react';
+import { Search, ShoppingCart, Menu, Phone, CheckCircle, ArrowLeft } from 'lucide-react';
 
 // Define product type
 interface Product {
@@ -18,7 +18,14 @@ interface CartItem {
 
 const Home = () => {
   const navigate = useNavigate();
-  const [cart, setCart] = useState<CartItem[]>([]);
+  const [cart, setCart] = useState<CartItem[]>(() => {
+    // Load cart from localStorage on initial render
+    if (typeof window !== 'undefined') {
+      const savedCart = localStorage.getItem('cart');
+      return savedCart ? JSON.parse(savedCart) : [];
+    }
+    return [];
+  });
   const [showCartPopup, setShowCartPopup] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
@@ -81,17 +88,29 @@ const Home = () => {
   const addToCart = (product: Product, e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    setCart(prevCart => {
+    const updatedCart = (prevCart: CartItem[]) => {
       const existingItem = prevCart.find(item => item.product.id === product.id);
+      let newCart;
+      
       if (existingItem) {
-        return prevCart.map(item =>
+        newCart = prevCart.map(item =>
           item.product.id === product.id
             ? { ...item, quantity: item.quantity + 1 }
             : item
         );
+      } else {
+        newCart = [...prevCart, { product, quantity: 1 }];
       }
-      return [...prevCart, { product, quantity: 1 }];
-    });
+      
+      // Save to localStorage
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('cart', JSON.stringify(newCart));
+      }
+      
+      return newCart;
+    };
+    
+    setCart(updatedCart);
     setShowCartPopup(true);
     setTimeout(() => setShowCartPopup(false), 3000);
   };
@@ -160,16 +179,14 @@ const Home = () => {
           {/* Right Side Icons */}
           <div className="flex items-center space-x-4">
             <div className="relative">
-              <ShoppingCart 
-                size={24} 
-                className="cursor-pointer" 
-                onClick={() => navigate('/checkout', { state: { cart } })} 
-              />
-              {cartItemCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                  {cartItemCount}
-                </span>
-              )}
+              <Link to="/checkout" className="relative">
+                <ShoppingCart className="h-6 w-6 text-gray-700" />
+                {cartItemCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-green-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                    {cartItemCount}
+                  </span>
+                )}
+              </Link>
             </div>
             <button className="md:hidden p-2 hover:bg-gray-100 rounded-full">
               <Menu size={24} />
@@ -177,52 +194,65 @@ const Home = () => {
           </div>
         </div>
       </nav>
-{/* Banner Section - Responsive with different images */}
-<div className="w-full relative">
-  {/* Desktop/Laptop Banner (hidden on mobile) */}
-  <div className="hidden md:block">
-    <img
-      src="/banner.png"
-      alt="Banner"
-      className="w-full h-[300px] object-cover"
-    />
-    <div className="absolute left-[3.75%] top-[67%]">
-      <button
-        className="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-md shadow-lg transition duration-300"
-        style={{ minWidth: "150px" }}
-      >
-        Shop Now
-      </button>
-    </div>
-  </div>
 
- {/* Mobile/Tablet Banner (hidden on desktop) */}
-<div className="md:hidden">
-  <div className="relative w-full" style={{ backgroundColor: '#F9ECDE' }}> {/* Dark blue background */}
-    <div className="container mx-auto px-4 py-16">
-      <div className="max-w-xl mx-auto text-center">
-        <h1 className="text-2xl md:text-3xl font-bold text-green-800 mb-4">
-          Premium Quality Products
-        </h1>
-        <p className="text-green-800 mb-6">
-          Discover our exclusive collection at unbeatable prices
-        </p>
-        <button
-          onClick={() => navigate('/products')}
-          className="bg-green-800 text-white hover:bg-gray-100 font-bold py-2 px-6 rounded-md shadow-lg transition duration-300"
-        >
-          Shop Now
-        </button>
+      {/* Banner Section */}
+      <div className="w-full relative">
+        {/* Desktop/Laptop Banner (hidden on mobile) */}
+        <div className="hidden md:block">
+          <img
+            src="/banner.png"
+            alt="Banner"
+            className="w-full h-[300px] object-cover"
+          />
+          <div className="absolute left-[3.75%] top-[67%]">
+            <button
+              className="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-md shadow-lg transition duration-300"
+              style={{ minWidth: "150px" }}
+            >
+              Shop Now
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile/Tablet Banner (hidden on desktop) */}
+        <div className="md:hidden">
+          <div className="relative w-full" style={{ backgroundColor: '#F9ECDE' }}>
+            <div className="container mx-auto px-4 py-16">
+              <div className="max-w-xl mx-auto text-center">
+                <h1 className="text-2xl md:text-3xl font-bold text-green-800 mb-4">
+                  Premium Quality Products
+                </h1>
+                <p className="text-green-800 mb-6">
+                  Discover our exclusive collection at unbeatable prices
+                </p>
+                <button
+                  onClick={() => navigate('/')}
+                  className="bg-green-800 text-white hover:bg-green-700 font-bold py-2 px-6 rounded-md shadow-lg transition duration-300"
+                >
+                  Shop Now
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</div>
-</div>
 
       {/* Search Results Section */}
       {searchQuery && filteredProducts.length > 0 && (
         <div className="container mx-auto px-4 pt-8">
-          <h2 className="text-2xl font-semibold text-left mb-6">Search Results for "{searchQuery}"</h2>
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-2xl font-semibold">Search Results for "{searchQuery}"</h2>
+            <button
+              onClick={() => {
+                setSearchQuery('');
+                setFilteredProducts([]);
+              }}
+              className="text-green-600 hover:text-green-800 font-medium flex items-center"
+            >
+              <ArrowLeft className="h-4 w-4 mr-1" />
+              Back to Home
+            </button>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {filteredProducts.map((product) => (
               <div 
@@ -250,6 +280,7 @@ const Home = () => {
         </div>
       )}
 
+      {/* Products Section */}
       {(!searchQuery || filteredProducts.length === 0) && (
         <div className="container mx-auto px-4 py-12">
           {searchQuery && (
@@ -298,7 +329,7 @@ const Home = () => {
       {showCartPopup && <CartPopup />}
 
       {/* Add the animation to your CSS */}
-      <style >{`
+      <style>{`
         @keyframes fadeInUp {
           from {
             opacity: 0;

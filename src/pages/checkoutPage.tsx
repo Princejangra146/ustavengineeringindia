@@ -55,7 +55,13 @@ const CheckoutPage = () => {
 
   // Update cart item quantity
   const updateQuantity = (productId: number, newQuantity: number) => {
-    if (newQuantity < 1) return;
+    if (newQuantity < 1) {
+      // If quantity would go below 1, remove the item
+      setCartItems(prevItems => 
+        prevItems.filter(item => item.product.id !== productId)
+      );
+      return;
+    }
 
     setCartItems(prevItems =>
       prevItems.map(item =>

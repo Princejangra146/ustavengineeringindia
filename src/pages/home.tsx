@@ -8,6 +8,7 @@ interface Product {
   name: string;
   description: string;
   price: number;
+  originalPrice: number;
   image: string;
 }
 
@@ -51,35 +52,40 @@ const Home = () => {
       id: 1,
       name: "AVR (UEI-01)",
       description: "Automatic Voltage Regulator",
-      price: 199.99,
+      price: 550,
+      originalPrice: 660,
       image: "/UEI.png"
     },
     {
       id: 2,
       name: "TAVR-20",
       description: "Three Phase Automatic Voltage Regulator",
-      price: 349.99,
+      price: 600,
+      originalPrice: 750,
       image: "/pic2.png"
     },
     {
       id: 3,
       name: "R-120",
       description: "High-power voltage regulator",
-      price: 1299.99,
+      price: 650,
+      originalPrice: 812,
       image: "/pic4.png"
     },
     {
       id: 4,
       name: "UEI-A10",
       description: "Advanced Automatic Voltage Regulator",
-      price: 599.99,
+      price: 900,
+      originalPrice: 1125,
       image: "/pic5.png"
     },
     {
       id: 5,
       name: "UEI-A4",
       description: "Advanced Automatic Voltage Regulator",
-      price: 599.99,
+      price: 1250,
+      originalPrice: 1562,
       image: "/pic7.png"
     }
   ];
@@ -178,7 +184,7 @@ const Home = () => {
 
           {/* Right Side Icons */}
           <div className="flex items-center space-x-4">
-            <div className="relative">
+            <div className="relative hidden md:block">
               <Link to="/checkout" className="relative">
                 <ShoppingCart className="h-6 w-6 text-gray-700" />
                 {cartItemCount > 0 && (
@@ -273,6 +279,13 @@ const Home = () => {
                 <div className="p-4">
                   <h3 className="text-lg font-semibold mb-1">{product.name}</h3>
                   <p className="text-gray-600 text-sm mb-2">{product.description}</p>
+                  <div className="flex items-center">
+                    <span className="text-green-700 font-bold">₹{product.price}/-</span>
+                    <span className="ml-2 text-gray-400 text-sm line-through">₹{product.originalPrice}/-</span>
+                    <span className="ml-2 text-xs bg-green-100 text-green-800 px-2 py-0.5 rounded-full">
+                      Save {Math.round(((product.price - product.originalPrice) / product.originalPrice * 100))}%
+                    </span>
+                  </div>
                 </div>
               </div>
             ))}
@@ -280,50 +293,98 @@ const Home = () => {
         </div>
       )}
 
-      {/* Products Section */}
-      {(!searchQuery || filteredProducts.length === 0) && (
-        <div className="container mx-auto px-4 py-12">
-          {searchQuery && (
-            <div className="text-center py-8">
-              <p className="text-gray-600">No products found matching "{searchQuery}"</p>
-              <button
-                onClick={() => setSearchQuery('')}
-                className="mt-2 text-green-600 hover:underline"
+      {/* Sale Banner */}
+      <div className="relative bg-gradient-to-r from-green-600 to-green-700 text-white overflow-hidden my-10">
+        <div className="max-w-7xl mx-auto px-6 py-8 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row items-center justify-between">
+            <div className="w-full text-left mb-6 md:mb-0 md:w-1/2 pl-4 md:pl-8 lg:pl-12">
+              <span className="inline-block bg-yellow-400 text-green-800 text-xs font-semibold px-3 py-1 rounded-full mb-3">
+                Limited Time Offer
+              </span>
+              <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-2">
+                <span className="block">End of Season</span>
+                <span className="block text-4xl md:text-5xl text-yellow-300 mt-1">20% OFF</span>
+              </h2>
+              <p className="text-lg md:text-xl mb-4 text-green-100">On all voltage regulators & accessories</p>
+              <button 
+                onClick={() => window.scrollTo({top: document.getElementById('products')?.offsetTop, behavior: 'smooth'})}
+                className="px-6 py-2 bg-white text-green-700 font-bold rounded-lg hover:bg-gray-100 transition-all duration-300 shadow-md hover:shadow-lg"
               >
-                Clear search
+                Shop Now
               </button>
             </div>
-          )}
-          <h2 className="text-3xl font-bold text-left mb-8">Products</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {products.map((product) => (
-              <div 
-                key={product.id} 
-                className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer"
-                onClick={() => navigate(`/product/${product.id}`)}
-              >
-                <div className="h-48 bg-gray-200">
-                  <img 
-                    src={product.image} 
-                    alt={product.name} 
-                    className="w-full h-full object-contain p-4"
-                  />
-                </div>
-                <div className="p-4">
-                  <h3 className="text-lg font-semibold mb-1">{product.name}</h3>
-                  <p className="text-gray-600 text-sm mb-2">{product.description}</p>
-                  <button
-                    onClick={(e) => addToCart(product, e)}
-                    className="w-full bg-green-800 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-md transition duration-300"
-                  >
-                    Add to Cart
-                  </button>
-                </div>
+            <div className="hidden lg:flex justify-end w-1/2">
+              <div className="relative w-48 h-48 md:w-56 md:h-56">
+                <img 
+                  src="/discount.png" 
+                  alt="Discount" 
+                  className="w-full h-full object-contain"
+                />
               </div>
-            ))}
+            </div>
           </div>
         </div>
-      )}
+        {/* Decorative elements */}
+        <div className="absolute top-0 left-0 w-32 h-32 bg-yellow-300 rounded-full opacity-10 transform -translate-x-16 -translate-y-16"></div>
+        <div className="absolute bottom-0 right-0 w-48 h-48 bg-white rounded-full opacity-10 transform translate-x-24 translate-y-24"></div>
+      </div>
+
+      {/* Products Section */}
+      <div id="products" className="pt-8">
+        {(!searchQuery || filteredProducts.length === 0) && (
+          <div className="container mx-auto px-4 py-12">
+            {searchQuery && (
+              <div className="text-center py-8">
+                <p className="text-gray-600">No products found matching "{searchQuery}"</p>
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="mt-2 text-green-600 hover:underline"
+                >
+                  Clear search
+                </button>
+              </div>
+            )}
+            <h2 className="text-3xl font-bold text-left mb-8">Products</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {products.map((product) => (
+                <div 
+                  key={product.id} 
+                  className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 cursor-pointer"
+                  onClick={() => navigate(`/product/${product.id}`)}
+                >
+                  <div className="h-48 bg-gray-200">
+                    <img 
+                      src={product.image} 
+                      alt={product.name} 
+                      className="w-full h-full object-contain p-4"
+                    />
+                  </div>
+                  <div className="p-4">
+                    <h3 className="text-lg font-semibold mb-1">{product.name}</h3>
+                    <p className="text-gray-600 text-sm mb-2">{product.description}</p>
+                    <div className="flex items-center">
+                      <span className="text-green-700 font-bold">₹{product.price}/-</span>
+                      <span className="ml-2 text-gray-400 text-sm line-through">₹{product.originalPrice}/-</span>
+                      <span className="ml-2 text-xs bg-green-100 text-green-800 px-2 py-0.5 rounded-full">
+                        Save {Math.round(((product.price - product.originalPrice) / product.originalPrice * 100))}%
+                      </span>
+                    </div>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        addToCart(product, e);
+                      }}
+                      className="w-full mt-3 bg-green-800 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-md transition duration-300"
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
 
       {/* Cart Popup */}
       {showCartPopup && <CartPopup />}

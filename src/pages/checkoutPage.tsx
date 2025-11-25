@@ -89,29 +89,41 @@ const CheckoutPage = () => {
     }, 0);
   };
 
-  const handleWhatsAppContact = () => {
-    const orderItems = cartItems.map(item => {
-      const itemTotal = item.product.price * item.quantity;
-      return `${item.quantity}x ${item.product.name} - ₹${itemTotal}/-`;
-    }).join('%0A');
-
-    const totalAmount = calculateTotalWithGST();
-    const totalSavings = calculateSavings();
-
-    let message = `Hello! I'm interested in placing an order for:%0A%0A${orderItems}%0A%0A`;
+ const handleWhatsAppContact = () => {
+  const orderItems = cartItems.map(item => {
+    const itemTotal = item.product.price * item.quantity;
+    const savings = item.product.originalPrice > item.product.price 
+      ? (item.product.originalPrice - item.product.price) * item.quantity 
+      : 0;
     
-    if (totalSavings > 0) {
-      message += `Total Savings: ₹${totalSavings}/-%0A`;
+    let itemText = `${item.product.name}%0A`;
+    itemText += `   ${item.quantity} × ₹${item.product.price}/- = ₹${itemTotal}/-%0A`;
+    
+    if (savings > 0) {
+      itemText += `   You save ₹${savings}/-%0A`;
     }
     
-    message += `Subtotal: ₹${calculateTotal()}/-%0A`;
-    message += `GST (18%): ₹${calculateGST()}/-%0A`;
-    message += `*Freight charges extra%0A`;
-    message += `Total Amount (incl. GST): ₹${totalAmount}/-%0A%0APlease contact me to proceed.`;
-    
-    window.open(`https://wa.me/919911231643?text=${message}`, '_blank');
-    setCartItems([]);
-  };
+    return itemText;
+  }).join('%0A');
+
+  const totalAmount = calculateTotalWithGST();
+  const totalSavings = calculateSavings();
+
+  let message = `Hello! I'm interested in placing an order for:%0A%0A${orderItems}%0A`;
+  
+  if (totalSavings > 0) {
+    message += `You Save: ₹${totalSavings}/-%0A`;
+  }
+  
+  message += `%0A`;
+  message += `Subtotal: ₹${calculateTotal()}/-%0A`;
+  message += `GST (18%): ₹${calculateGST()}/-%0A`;
+  message += `*Freight charges extra%0A%0A`;
+  message += `Total Amount (incl. GST): ₹${totalAmount}/-%0A%0APlease contact me to proceed.`;
+  
+  window.open(`https://wa.me/919911231643?text=${message}`, '_blank');
+  setCartItems([]);
+};
 
   if (cartItems.length === 0) {
     return (

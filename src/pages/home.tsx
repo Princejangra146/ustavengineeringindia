@@ -298,7 +298,7 @@ const Home = () => {
       {showCartPopup && <CartPopup />}
 
       {/* Add the animation to your CSS */}
-      <style jsx global>{`
+      <style >{`
         @keyframes fadeInUp {
           from {
             opacity: 0;

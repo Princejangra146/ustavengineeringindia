@@ -228,7 +228,7 @@ const ProductDetails = () => {
     
     // Check if product already exists in cart
     const existingItemIndex = existingCart.findIndex(
-      (item: CartItem) => item.product.id === product.id
+      (item: any) => item.product.id === product.id
     );
 
     if (existingItemIndex >= 0) {

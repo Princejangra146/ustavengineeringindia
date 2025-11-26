@@ -97,7 +97,7 @@ const Home = () => {
     {
       id: 2,
       name: "TAVR-20",
-      description: "Three Phase Automatic Voltage Regulator",
+      description: " Automatic Voltage Regulator",
       price: 600,
       originalPrice: 750,
       image: "/pic2.png"
@@ -437,12 +437,20 @@ const Home = () => {
                 </button>
               </div>
             )}
-            <h2 className="text-3xl font-bold text-left mb-8">Products</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 px-4 sm:px-0">
+            <div className="flex justify-between items-center mb-8">
+              <h2 className="text-3xl font-bold">Products</h2>
+              <a href="#" className="text-green-600 hover:underline font-medium">View All</a>
+            </div>
+            <div className="flex overflow-x-auto pb-6 gap-6 px-4 sm:px-0 scrollbar-hide">
               {products.map((product) => (
                 <div 
                   key={product.id} 
-                  className="group bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:border-green-100 flex flex-col h-full"
+                  className="group bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:border-green-100 flex flex-col h-full w-72 flex-shrink-0"
+                 onClick={(e) => {
+    // Stop propagation to prevent event bubbling to parent elements
+    e.stopPropagation();
+    navigate(`/product/${product.id}`);
+  }}
                 >
                   {/* Product Image */}
                   <div className="relative h-56 bg-gray-50 flex items-center justify-center p-4 overflow-hidden">
@@ -475,7 +483,7 @@ const Home = () => {
                         <span className="text-xl font-bold text-gray-900">₹{product.price.toLocaleString()}</span>
                         <span className="ml-2 text-sm text-gray-400 line-through">₹{product.originalPrice.toLocaleString()}</span>
                       </div>
- 　 　 　 　 　 　 　
+
                       {/* Quantity Selector */}
                       <div className="flex items-center mb-4">
                         <button
@@ -500,7 +508,7 @@ const Home = () => {
                           <Plus className="h-4 w-4 text-gray-600" />
                         </button>
                       </div>
- 　 　 　 　 　 　 　
+ 
                       {/* Add to Cart Button */}
                       <button
                         onClick={(e) => {

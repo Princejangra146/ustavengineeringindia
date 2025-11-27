@@ -90,6 +90,12 @@ const CheckoutPage = () => {
   };
 
  const handleWhatsAppContact = () => {
+  // Use a simple sequential order number stored in localStorage: order no :- 1, 2, ...
+  const lastOrderNoRaw = localStorage.getItem('lastOrderNo');
+  const lastOrderNo = lastOrderNoRaw ? parseInt(lastOrderNoRaw, 10) : 0;
+  const orderNo = lastOrderNo + 1;
+  localStorage.setItem('lastOrderNo', orderNo.toString());
+
   const orderItems = cartItems.map(item => {
     const itemTotal = item.product.price * item.quantity;
     const savings = item.product.originalPrice > item.product.price 
@@ -109,7 +115,9 @@ const CheckoutPage = () => {
   const totalAmount = calculateTotalWithGST();
   const totalSavings = calculateSavings();
 
-  let message = `Hello! I'm interested in placing an order for:%0A%0A${orderItems}%0A`;
+  // Simple order number format as requested: "order no :- N"
+  let message = `order no :- ${orderNo}%0A%0A`;
+  message += `Hello! I'm interested in placing an order for:%0A%0A${orderItems}%0A`;
   
   if (totalSavings > 0) {
     message += `You Save: ₹${totalSavings}/-%0A`;
@@ -164,53 +172,50 @@ const CheckoutPage = () => {
                 : 0;
               
               return (
-                <div key={item.product.id} className="bg-white rounded-lg shadow-sm p-6 flex flex-col sm:flex-row">
-                  <div className="w-full sm:w-32 h-32 bg-gray-100 rounded-lg flex-shrink-0 flex items-center justify-center p-2">
+                <div key={item.product.id} className="bg-white rounded-2xl shadow-md p-6 flex flex-col sm:flex-row items-start gap-4">
+                  <div className="w-full sm:w-36 h-36 bg-gray-50 rounded-xl flex-shrink-0 flex items-center justify-center p-3 border border-gray-100">
                     <img
                       src={item.product.image}
                       alt={item.product.name}
                       className="max-h-full max-w-full object-contain"
                     />
                   </div>
-                  
-                  <div className="mt-4 sm:mt-0 sm:ml-6 flex-1">
-                    <h3 className="text-lg font-medium text-gray-900">{item.product.name}</h3>
-                    
+
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-lg font-semibold text-gray-900 truncate">{item.product.name}</h3>
+
                     {/* Price Display */}
-                    <div className="mt-2">
-                      <div className="flex items-center">
-                        <span className="text-lg font-bold text-green-700">₹{item.product.price}/-</span>
-                        {item.product.originalPrice > item.product.price && (
-                          <span className="ml-2 text-gray-400 line-through">₹{item.product.originalPrice}/-</span>
-                        )}
-                      </div>
+                    <div className="mt-3 flex items-center gap-3 flex-wrap">
+                      <div className="text-lg font-bold text-green-700">₹{item.product.price}/-</div>
                       {item.product.originalPrice > item.product.price && (
-                        <span className="text-sm text-green-700">
-                          Save ₹{(item.product.originalPrice - item.product.price) * item.quantity} ({discountPercentage}% off)
-                        </span>
+                        <div className="text-sm text-gray-400 line-through">₹{item.product.originalPrice}/-</div>
+                      )}
+                      {item.product.originalPrice > item.product.price && (
+                        <div className="text-sm text-green-700">Save ₹{(item.product.originalPrice - item.product.price) * item.quantity} ({discountPercentage}% off)</div>
                       )}
                     </div>
 
                     {/* Quantity Selector */}
-                    <div className="mt-4 flex items-center">
-                      <button
-                        onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
-                        className="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-l-md bg-gray-50 text-gray-600 hover:bg-gray-100"
-                      >
-                        <Minus className="h-4 w-4" />
-                      </button>
-                      <div className="w-12 h-8 flex items-center justify-center border-t border-b border-gray-300 bg-white text-center">
-                        {item.quantity}
+                    <div className="mt-4 flex items-center gap-3">
+                      <div className="inline-flex items-center rounded-md overflow-hidden border border-gray-200">
+                        <button
+                          onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
+                          className="w-9 h-9 flex items-center justify-center bg-white text-gray-700 hover:bg-gray-50"
+                        >
+                          <Minus className="h-4 w-4" />
+                        </button>
+                        <div className="w-12 h-9 flex items-center justify-center bg-white text-sm font-medium border-l border-r border-gray-200">{item.quantity}</div>
+                        <button
+                          onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
+                          className="w-9 h-9 flex items-center justify-center bg-white text-gray-700 hover:bg-gray-50"
+                        >
+                          <Plus className="h-4 w-4" />
+                        </button>
                       </div>
-                      <button
-                        onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
-                        className="w-8 h-8 flex items-center justify-center border border-gray-300 rounded-r-md bg-gray-50 text-gray-600 hover:bg-gray-100"
-                      >
-                        <Plus className="h-4 w-4" />
-                      </button>
+
                       <button
                         onClick={() => removeItem(item.product.id)}
-                        className="ml-4 text-red-600 hover:text-red-800 flex items-center text-sm"
+                        className="ml-2 text-red-600 hover:text-red-800 flex items-center text-sm"
                       >
                         <Trash2 className="h-4 w-4 mr-1" />
                         Remove
@@ -224,41 +229,39 @@ const CheckoutPage = () => {
 
           {/* Order Summary */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-lg shadow-sm p-6 sticky top-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">Order Summary</h2>
-              
-              <div className="space-y-4">
+            <div className="bg-white rounded-2xl shadow-md p-6 sticky top-6">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-lg font-semibold text-gray-900">Order Summary</h2>
+                <div className="text-sm text-gray-500">{cartItems.length} items</div>
+              </div>
+
+              <div className="divide-y divide-gray-100 mb-4">
                 {cartItems.map(item => {
                   const singlePrice = item.product.price;
                   const totalPrice = singlePrice * item.quantity;
                   
                   return (
-                    <div key={item.product.id} className="text-sm mb-2">
-                      <div className="font-medium">{item.product.name}</div>
-                      <div className="flex justify-between text-gray-600 pl-2">
-                        <span>₹{singlePrice}/- × {item.quantity}</span>
-                        <span>= ₹{totalPrice}/-</span>
+                    <div key={item.product.id} className="py-3 flex items-start justify-between text-sm">
+                      <div className="min-w-0">
+                        <div className="font-medium truncate">{item.product.name}</div>
+                        <div className="text-gray-500 text-xs">₹{singlePrice}/- × {item.quantity}</div>
                       </div>
-                      {item.product.originalPrice > singlePrice && (
-                        <div className="text-xs text-green-600 pl-2">
-                          You save ₹{(item.product.originalPrice - singlePrice) * item.quantity}/-
-                        </div>
-                      )}
+                      <div className="text-gray-700 font-medium">₹{totalPrice}/-</div>
                     </div>
                   );
                 })}
               </div>
 
               {calculateSavings() > 0 && (
-                <div className="mt-4 pt-4 border-t border-gray-200">
-                  <div className="flex justify-between text-green-700">
+                <div className="mb-4 py-3 px-3 bg-green-50 rounded-lg text-sm text-green-700">
+                  <div className="flex justify-between">
                     <span>You Save</span>
                     <span>₹{calculateSavings()}/-</span>
                   </div>
                 </div>
               )}
 
-              <div className="mt-4 pt-4 border-t border-gray-200 space-y-2">
+              <div className="space-y-3">
                 <div className="flex justify-between text-sm text-gray-600">
                   <span>Subtotal</span>
                   <span>₹{calculateTotal()}/-</span>
@@ -267,10 +270,9 @@ const CheckoutPage = () => {
                   <span>GST (18%)</span>
                   <span>₹{calculateGST()}/-</span>
                 </div>
-                <div className="mt-2 text-xs text-gray-500 italic text-center">
-                  *Freight charges extra
-                </div>
-                <div className="flex justify-between text-lg font-semibold text-gray-900 pt-2 border-t border-gray-200 mt-2">
+                <div className="text-xs text-gray-500 italic text-center">*Freight charges extra</div>
+
+                <div className="flex justify-between text-lg font-semibold text-gray-900 pt-3 border-t border-gray-100">
                   <span>Total</span>
                   <span>₹{calculateTotalWithGST()}/-</span>
                 </div>
@@ -278,7 +280,7 @@ const CheckoutPage = () => {
 
               <button
                 onClick={handleWhatsAppContact}
-                className="mt-6 w-full bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-md font-medium transition-colors"
+                className="mt-6 w-full bg-gradient-to-r from-green-600 to-green-500 hover:from-green-700 hover:to-green-600 text-white py-3 px-6 rounded-lg font-semibold shadow-md transition-all"
               >
                 Proceed to WhatsApp
               </button>

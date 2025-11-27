@@ -183,34 +183,34 @@ const Home = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Top Header - Sticky */}
-  <div className={`sticky top-0 z-50 text-white py-2 text-sm transition-all duration-300 ${
+      {/* Top Header - Compact Sticky */}
+  <div className={`sticky top-0 z-50 text-white py-1.5 text-sm transition-all duration-300 ${
   isScrolled 
-    ? 'bg-green-800/90 backdrop-blur-sm' 
-    : 'bg-green-800'
+    ? 'bg-gradient-to-r from-green-700 to-green-600 shadow' 
+    : 'bg-gradient-to-r from-green-800 to-green-700'
 }`}>
         <div className="container mx-auto px-4 flex justify-between items-center">
-          <span>Shop Now</span>
-          <div className="flex items-center gap-2">
-            <Phone size={16} />
-            <span>+91 9911231643</span>
+          <span className="font-semibold tracking-wide text-sm">🛍️ Shop Now</span>
+          <div className="flex items-center gap-2 hover:text-green-100 transition-colors cursor-pointer text-sm">
+            <Phone size={14} />
+            <span className="font-medium">+91 9911231643</span>
           </div>
         </div>
       </div>
 
-      {/* Navbar - Sticky */}
- <nav className={`sticky top-8 z-40 shadow-md transition-all duration-300 ${
+      {/* Navbar - Compact Sticky */}
+ <nav className={`sticky top-[40px] z-40 shadow-sm transition-all duration-300 ${
   isScrolled 
-    ? 'bg-white/90 backdrop-blur-sm' 
+    ? 'bg-white/95 backdrop-blur-sm shadow-md' 
     : 'bg-white'
 }`}>
-        <div className="container mx-auto px-4 py-3 flex items-center justify-between">
+        <div className="container mx-auto px-4 py-2 flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
             <img 
               src="/logo.png" 
               alt="UEI Logo" 
-              className="h-14 w-auto object-contain" 
+              className="h-8 w-auto object-contain" 
             />
           </div>
 
@@ -222,61 +222,94 @@ const Home = () => {
                 placeholder="Search for products..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="w-full px-4 py-1.5 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all bg-gray-50 hover:bg-white text-sm"
               />
               <button 
                 type="submit"
-                className="absolute right-0 top-0 h-full px-4 bg-green-600 text-white rounded-r-md hover:bg-green-700"
+                className="absolute right-1 top-1/2 transform -translate-y-1/2 h-8 px-3 bg-green-600 text-white rounded-full hover:bg-green-700 transition-all shadow-sm"
               >
-                <Search size={20} />
+                <Search size={16} />
               </button>
             </form>
           </div>
 
           {/* Right Side Icons */}
-          <div className="flex items-center space-x-4">
-            <div className="relative">
-              <Link to="/checkout" className="relative">
-                <ShoppingCart className="h-6 w-6 text-gray-700" />
+          <div className="flex items-center space-x-3 text-sm">
+            <div className="relative group">
+              <Link to="/checkout" className="relative p-2 hover:bg-gray-100 rounded-full transition-all">
+                <ShoppingCart className="h-5 w-5 text-gray-700 group-hover:text-green-600 transition-colors" />
                 {cartItemCount > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-green-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                  <span className="absolute -top-1 -right-1 bg-gradient-to-br from-red-500 to-red-600 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center font-bold shadow-sm">
                     {cartItemCount}
                   </span>
                 )}
               </Link>
             </div>
-            <button className="md:hidden p-2 hover:bg-gray-100 rounded-full">
-              <Menu size={24} />
+            <button className="md:hidden p-2 hover:bg-gray-100 rounded-full transition-all">
+              <Menu size={20} />
             </button>
+
           </div>
         </div>
 
         {/* Category Bar */}
-<div className={`sticky top-[104px] z-30 border-t border-gray-100 transition-all duration-300 ${
+<div className={`sticky z-30 transition-all duration-300 ${
   isScrolled 
-    ? 'bg-white/90 backdrop-blur-sm' 
+    ? 'bg-white/90 backdrop-blur-sm shadow-sm' 
     : 'bg-white'
 }`} style={{
-  WebkitBackdropFilter: isScrolled ? 'blur(4px)' : 'none',
-  backdropFilter: isScrolled ? 'blur(4px)' : 'none'
+  WebkitBackdropFilter: isScrolled ? 'blur(8px)' : 'none',
+  backdropFilter: isScrolled ? 'blur(8px)' : 'none',
+  top: isScrolled ? '80px' : '88px'
 }}>
           <div className="container mx-auto px-4 py-3">
-            <div className="flex items-center space-x-1 overflow-x-auto pb-2 scrollbar-hide">
+            <div className="flex items-center space-x-2 overflow-x-auto pb-2 scrollbar-hide">
               {/* Category items will go here */}
-              <button className="flex-shrink-0 px-4 py-2 bg-green-600 text-white rounded-full text-sm font-medium whitespace-nowrap">
+              <button className="flex-shrink-0 px-4 py-1.5 bg-gradient-to-r from-green-600 to-green-500 text-white rounded-full text-sm font-semibold whitespace-nowrap shadow-sm hover:from-green-700 hover:to-green-600 transition-all">
                 All Categories
               </button>
-              {[
-                'AVR', 'Safety Unit', 'Solenoid', 'Battery Charger', 'Diode',
-                'LLOP', 'RRA', 'Level Switch', 'Hardness Wire', 'Stop Unit'
-              ].map((category) => (
-                <button 
-                  key={category}
-                  className="flex-shrink-0 px-4 py-2 bg-white hover:bg-gray-100 text-gray-700 rounded-full text-sm font-medium border border-gray-200 whitespace-nowrap transition-colors"
-                >
-                  {category}
-                </button>
-              ))}
+              <Link 
+  to="/avr"
+  className="flex-shrink-0 px-4 py-1.5 bg-white hover:bg-green-50 text-gray-700 rounded-full text-sm font-medium border border-gray-200 hover:border-green-500 whitespace-nowrap transition-all hover:text-green-600"
+>
+  AVR
+</Link>
+{['Safety Unit', 'Solenoid', 'Battery Charger', 'Diode',
+  'LLOP', 'RRA', 'Level Switch', 'Hardness Wire', 'Stop Unit', 'Controller', 'Panel', 'Rectifier'
+].map((category) => (
+  category === 'Safety Unit' ? (
+    <Link key={category} to="/safety-unit" className="flex-shrink-0 px-5 py-2.5 bg-white hover:bg-green-50 text-gray-700 rounded-full text-sm font-medium border-2 border-gray-200 hover:border-green-500 whitespace-nowrap transition-all transform hover:scale-105 hover:text-green-600"> {category} </Link>
+  ) : category === 'Solenoid' ? (
+    <Link key={category} to="/solenoid" className="flex-shrink-0 px-5 py-2.5 bg-white hover:bg-green-50 text-gray-700 rounded-full text-sm font-medium border-2 border-gray-200 hover:border-green-500 whitespace-nowrap transition-all transform hover:scale-105 hover:text-green-600"> {category} </Link>
+  ) : category === 'Battery Charger' ? (
+    <Link key={category} to="/battery-charger" className="flex-shrink-0 px-5 py-2.5 bg-white hover:bg-green-50 text-gray-700 rounded-full text-sm font-medium border-2 border-gray-200 hover:border-green-500 whitespace-nowrap transition-all transform hover:scale-105 hover:text-green-600"> {category} </Link>
+  ) : category === 'Diode' ? (
+    <Link key={category} to="/diode" className="flex-shrink-0 px-5 py-2.5 bg-white hover:bg-green-50 text-gray-700 rounded-full text-sm font-medium border-2 border-gray-200 hover:border-green-500 whitespace-nowrap transition-all transform hover:scale-105 hover:text-green-600"> {category} </Link>
+  ) : category === 'LLOP' ? (
+    <Link key={category} to="/llop" className="flex-shrink-0 px-5 py-2.5 bg-white hover:bg-green-50 text-gray-700 rounded-full text-sm font-medium border-2 border-gray-200 hover:border-green-500 whitespace-nowrap transition-all transform hover:scale-105 hover:text-green-600"> {category} </Link>
+  ) : category === 'RRA' ? (
+    <Link key={category} to="/rra" className="flex-shrink-0 px-5 py-2.5 bg-white hover:bg-green-50 text-gray-700 rounded-full text-sm font-medium border-2 border-gray-200 hover:border-green-500 whitespace-nowrap transition-all transform hover:scale-105 hover:text-green-600"> {category} </Link>
+  ) : category === 'Level Switch' ? (
+    <Link key={category} to="/level-switch" className="flex-shrink-0 px-5 py-2.5 bg-white hover:bg-green-50 text-gray-700 rounded-full text-sm font-medium border-2 border-gray-200 hover:border-green-500 whitespace-nowrap transition-all transform hover:scale-105 hover:text-green-600"> {category} </Link>
+  ) : category === 'Hardness Wire' ? (
+    <Link key={category} to="/hardness-wire" className="flex-shrink-0 px-5 py-2.5 bg-white hover:bg-green-50 text-gray-700 rounded-full text-sm font-medium border-2 border-gray-200 hover:border-green-500 whitespace-nowrap transition-all transform hover:scale-105 hover:text-green-600"> {category} </Link>
+  ) : category === 'Stop Unit' ? (
+    <Link key={category} to="/stop-unit" className="flex-shrink-0 px-5 py-2.5 bg-white hover:bg-green-50 text-gray-700 rounded-full text-sm font-medium border-2 border-gray-200 hover:border-green-500 whitespace-nowrap transition-all transform hover:scale-105 hover:text-green-600"> {category} </Link>
+  ) : category === 'Controller' ? (
+    <Link key={category} to="/controller" className="flex-shrink-0 px-5 py-2.5 bg-white hover:bg-green-50 text-gray-700 rounded-full text-sm font-medium border-2 border-gray-200 hover:border-green-500 whitespace-nowrap transition-all transform hover:scale-105 hover:text-green-600"> {category} </Link>
+  ) : category === 'Panel' ? (
+    <Link key={category} to="/panel" className="flex-shrink-0 px-5 py-2.5 bg-white hover:bg-green-50 text-gray-700 rounded-full text-sm font-medium border-2 border-gray-200 hover:border-green-500 whitespace-nowrap transition-all transform hover:scale-105 hover:text-green-600"> {category} </Link>
+  ) : category === 'Rectifier' ? (
+    <Link key={category} to="/rectifier" className="flex-shrink-0 px-5 py-2.5 bg-white hover:bg-green-50 text-gray-700 rounded-full text-sm font-medium border-2 border-gray-200 hover:border-green-500 whitespace-nowrap transition-all transform hover:scale-105 hover:text-green-600"> {category} </Link>
+  ) : (
+    <button 
+      key={category}
+      className="flex-shrink-0 px-5 py-2.5 bg-white hover:bg-green-50 text-gray-700 rounded-full text-sm font-medium border-2 border-gray-200 hover:border-green-500 whitespace-nowrap transition-all transform hover:scale-105 hover:text-green-600"
+    >
+      {category}
+    </button>
+  )
+))}
             </div>
           </div>
         </div>
@@ -548,71 +581,229 @@ const Home = () => {
       `}</style>
 
      {/* Trusted By Section */}
-<div className="bg-white py-16">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div className="text-center mb-12">
-      <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Trusted By Industry Leaders</h2>
-      <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">
-        Join thousands of satisfied customers who trust our quality products and services
+<div className="bg-gradient-to-br from-green-50 via-white to-blue-50 py-24 relative overflow-hidden">
+  {/* Decorative Background Elements */}
+  <div className="absolute top-0 right-0 w-96 h-96 bg-green-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+  <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{animationDelay: '2s'}}></div>
+  
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div className="text-center mb-16">
+      <div className="inline-block mb-4">
+        <span className="px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm font-semibold">✨ Why Trust Us</span>
+      </div>
+      <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Trusted By Thousands</h2>
+      <div className="h-1.5 w-24 bg-gradient-to-r from-green-600 to-blue-600 rounded-full mx-auto mb-6"></div>
+      <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+        Join thousands of satisfied customers who trust our premium quality products and exceptional service
       </p>
     </div>
     
-   <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5 items-center justify-items-center">
+   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
   {/* Trust Badge 1 */}
-  <div className="p-4 text-center w-full">
-    <div className="h-20 w-full flex items-center justify-center mb-2">
-      <svg className="h-12 w-12 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 13l4 4L19 7" />
-      </svg>
+  <div className="group relative h-full">
+    <div className="absolute inset-0 bg-gradient-to-r from-green-600 to-green-400 rounded-2xl blur opacity-25 group-hover:opacity-100 transition duration-300"></div>
+    <div className="relative p-8 bg-white rounded-2xl hover:shadow-2xl transition-all duration-300 transform group-hover:-translate-y-2 hover:bg-gradient-to-br hover:from-white hover:to-green-50 border border-gray-100 h-full flex flex-col">
+      <div className="h-16 w-16 mx-auto flex items-center justify-center mb-4 bg-gradient-to-br from-green-100 to-green-50 rounded-xl group-hover:from-green-600 group-hover:to-green-500 transition-all flex-shrink-0">
+        <svg className="h-8 w-8 text-green-600 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+        </svg>
+      </div>
+      <h3 className="text-center text-lg font-bold text-gray-900 group-hover:text-green-600 transition-colors">Premium Quality</h3>
+      <p className="text-center text-sm text-gray-600 mt-2 flex-grow">ISO certified products meeting industry standards</p>
     </div>
-    <span className="text-sm font-medium text-gray-700">Premium Quality</span>
   </div>
   
   {/* Trust Badge 2 */}
-  <div className="p-4 text-center w-full">
-    <div className="h-20 w-full flex items-center justify-center mb-2">
-      <svg className="h-12 w-12 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
+  <div className="group relative h-full">
+    <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-400 rounded-2xl blur opacity-25 group-hover:opacity-100 transition duration-300"></div>
+    <div className="relative p-8 bg-white rounded-2xl hover:shadow-2xl transition-all duration-300 transform group-hover:-translate-y-2 hover:bg-gradient-to-br hover:from-white hover:to-blue-50 border border-gray-100 h-full flex flex-col">
+      <div className="h-16 w-16 mx-auto flex items-center justify-center mb-4 bg-gradient-to-br from-blue-100 to-blue-50 rounded-xl group-hover:from-blue-600 group-hover:to-blue-500 transition-all flex-shrink-0">
+        <svg className="h-8 w-8 text-blue-600 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+      </div>
+      <h3 className="text-center text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors">Fast Delivery</h3>
+      <p className="text-center text-sm text-gray-600 mt-2 flex-grow">Swift shipping across India with tracking</p>
     </div>
-    <span className="text-sm font-medium text-gray-700">Fast Delivery</span>
   </div>
   
   {/* Trust Badge 3 */}
-  <div className="p-4 text-center w-full">
-    <div className="h-20 w-full flex items-center justify-center mb-2">
-      <svg className="h-12 w-12 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 10h18M7 15h1m4 0h1m-1-5h1m4 0h1m-9 5h10a2 2 0 002-2V8a2 2 0 00-2-2H7a2 2 0 00-2 2v5a2 2 0 002 2z" />
-      </svg>
+  <div className="group relative h-full">
+    <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-purple-400 rounded-2xl blur opacity-25 group-hover:opacity-100 transition duration-300"></div>
+    <div className="relative p-8 bg-white rounded-2xl hover:shadow-2xl transition-all duration-300 transform group-hover:-translate-y-2 hover:bg-gradient-to-br hover:from-white hover:to-purple-50 border border-gray-100 h-full flex flex-col">
+      <div className="h-16 w-16 mx-auto flex items-center justify-center mb-4 bg-gradient-to-br from-purple-100 to-purple-50 rounded-xl group-hover:from-purple-600 group-hover:to-purple-500 transition-all flex-shrink-0">
+        <svg className="h-8 w-8 text-purple-600 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+        </svg>
+      </div>
+      <h3 className="text-center text-lg font-bold text-gray-900 group-hover:text-purple-600 transition-colors">Secure Payments</h3>
+      <p className="text-center text-sm text-gray-600 mt-2 flex-grow">Encrypted & safe payment gateway</p>
     </div>
-    <span className="text-sm font-medium text-gray-700">Secure Payments</span>
   </div>
   
   {/* Trust Badge 4 */}
-  <div className="p-4 text-center w-full">
-    <div className="h-20 w-full flex items-center justify-center mb-2">
-      <svg className="h-12 w-12 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 15a4 4 0 004 4h10a4 4 0 004-4V9a4 4 0 00-4-4H7a4 4 0 00-4 4v6z" />
-      </svg>
+  <div className="group relative h-full">
+    <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-orange-400 rounded-2xl blur opacity-25 group-hover:opacity-100 transition duration-300"></div>
+    <div className="relative p-8 bg-white rounded-2xl hover:shadow-2xl transition-all duration-300 transform group-hover:-translate-y-2 hover:bg-gradient-to-br hover:from-white hover:to-orange-50 border border-gray-100 h-full flex flex-col">
+      <div className="h-16 w-16 mx-auto flex items-center justify-center mb-4 bg-gradient-to-br from-orange-100 to-orange-50 rounded-xl group-hover:from-orange-600 group-hover:to-orange-500 transition-all flex-shrink-0">
+        <svg className="h-8 w-8 text-orange-600 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </div>
+      <h3 className="text-center text-lg font-bold text-gray-900 group-hover:text-orange-600 transition-colors">Certified Excellence</h3>
+      <p className="text-center text-sm text-gray-600 mt-2 flex-grow">Award-winning quality assurance</p>
     </div>
-    <span className="text-sm font-medium text-gray-700">Quality Certified</span>
   </div>
   
   {/* Trust Badge 5 */}
-  <div className="p-4 text-center w-full">
-    <div className="h-20 w-full flex items-center justify-center mb-2">
-      <svg className="h-12 w-12 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
+  <div className="group relative h-full">
+    <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-red-400 rounded-2xl blur opacity-25 group-hover:opacity-100 transition duration-300"></div>
+    <div className="relative p-8 bg-white rounded-2xl hover:shadow-2xl transition-all duration-300 transform group-hover:-translate-y-2 hover:bg-gradient-to-br hover:from-white hover:to-red-50 border border-gray-100 h-full flex flex-col">
+      <div className="h-16 w-16 mx-auto flex items-center justify-center mb-4 bg-gradient-to-br from-red-100 to-red-50 rounded-xl group-hover:from-red-600 group-hover:to-red-500 transition-all flex-shrink-0">
+        <svg className="h-8 w-8 text-red-600 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5-4a4 4 0 11-8 0 4 4 0 018 0z" />
+        </svg>
+      </div>
+      <h3 className="text-center text-lg font-bold text-gray-900 group-hover:text-red-600 transition-colors">24/7 Support</h3>
+      <p className="text-center text-sm text-gray-600 mt-2 flex-grow">Expert assistance always available</p>
     </div>
-    <span className="text-sm font-medium text-gray-700">24/7 Support</span>
   </div>
-</div>
   </div>
-</div>
-          
+  </div>
+</div>      {/* Modern About Section */}
+    <div id="about" className="bg-gradient-to-b from-gray-50 to-white py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left Side - Content */}
+            <div className="space-y-6">
+              <div className="space-y-2">
+                <h2 className="text-4xl font-bold text-gray-900">About Utsav Engineering India</h2>
+                <div className="h-1 w-20 bg-green-600 rounded-full"></div>
+              </div>
+              
+              <p className="text-lg text-gray-700 leading-relaxed">
+                <span className="font-semibold text-green-700">"Utsav Engineering India"</span> is one of the leading names involved in offering high-quality Panels and AVR (Automatic Voltage Regulators). Since our inception in 2011, we have carved a niche for ourselves in the industry in a very short span of time.
+              </p>
+
+              <div className="space-y-4 pt-4">
+                <div className="flex gap-4">
+                  <div className="flex-shrink-0">
+                    <div className="flex items-center justify-center h-12 w-12 rounded-md bg-green-600 text-white">
+                      <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900">Special Products</h3>
+                    <p className="text-gray-600">Customized solutions tailored to your specific needs</p>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <div className="flex-shrink-0">
+                    <div className="flex items-center justify-center h-12 w-12 rounded-md bg-green-600 text-white">
+                      <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900">AVR for Small Generators</h3>
+                    <p className="text-gray-600">Precision voltage regulation for small-scale applications</p>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <div className="flex-shrink-0">
+                    <div className="flex items-center justify-center h-12 w-12 rounded-md bg-green-600 text-white">
+                      <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900">AVR for Large Machines</h3>
+                    <p className="text-gray-600">Robust solutions for industrial-grade machinery</p>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <div className="flex-shrink-0">
+                    <div className="flex items-center justify-center h-12 w-12 rounded-md bg-green-600 text-white">
+                      <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900">Excitation Panels</h3>
+                    <p className="text-gray-600">Analogue panels for advanced control and monitoring</p>
+                  </div>
+                </div>
+              </div>
+
+              <p className="text-base text-gray-700 pt-4 border-t border-gray-200">
+                We offer these premium products at industry-leading prices. Backed by a team of experienced professionals, we are committed to delivering high-quality solutions that exceed customer expectations and provide excellent value for money.
+              </p>
+            </div>
+
+            {/* Right Side - Stats */}
+            <div className="space-y-6">
+              <div className="grid grid-cols-2 gap-6">
+                <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                  <div className="text-4xl font-bold text-green-600 mb-2">13+</div>
+                  <p className="text-gray-600 font-medium">Years of Excellence</p>
+                  <p className="text-sm text-gray-500 mt-1">Since 2011</p>
+                </div>
+
+                <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                  <div className="text-4xl font-bold text-green-600 mb-2">1000+</div>
+                  <p className="text-gray-600 font-medium">Happy Clients</p>
+                  <p className="text-sm text-gray-500 mt-1">Satisfied customers worldwide</p>
+                </div>
+
+                <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                  <div className="text-4xl font-bold text-green-600 mb-2">100%</div>
+                  <p className="text-gray-600 font-medium">Quality Assured</p>
+                  <p className="text-sm text-gray-500 mt-1">ISO certified products</p>
+                </div>
+
+                <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                  <div className="text-4xl font-bold text-green-600 mb-2">50+</div>
+                  <p className="text-gray-600 font-medium">Product Range</p>
+                  <p className="text-sm text-gray-500 mt-1">Diverse solutions available</p>
+                </div>
+              </div>
+
+              <div className="bg-green-50 border-l-4 border-green-600 p-6 rounded">
+                <h3 className="font-semibold text-green-900 mb-2">Why Choose Us?</h3>
+                <ul className="space-y-2 text-sm text-green-800">
+                  <li className="flex items-center gap-2">
+                    <span className="text-green-600">✓</span>
+                    Industry-leading prices
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-green-600">✓</span>
+                    Premium quality products
+                    </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-green-600">✓</span>
+                    Experienced professionals
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-green-600">✓</span>
+                    Fast & reliable delivery
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+            
             {/* Modern Footer Section */}
-      <footer className="bg-gradient-to-r from-green-900 to-green-800 text-white py-12 mt-20">
+  <footer id="contact" className="bg-gradient-to-r from-green-900 to-green-800 text-white py-12 mt-20">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
             {/* Company Info */}
@@ -631,25 +822,25 @@ const Home = () => {
               <h3 className="text-xl font-semibold border-b border-green-700 pb-2">Quick Links</h3>
               <ul className="space-y-3">
                 <li>
-                  <a href="#" className="text-green-100 hover:text-white transition-colors duration-300 flex items-center group">
+                    <a href="#" className="text-green-100 hover:text-white transition-colors duration-300 flex items-center group">
                     <span className="w-1.5 h-1.5 bg-green-400 rounded-full mr-2 group-hover:scale-125 transition-transform"></span>
                     Home
-                  </a>
+                    </a>
                 </li>
                 <li>
-                  <a href="#products" className="text-green-100 hover:text-white transition-colors duration-300 flex items-center group">
+                    <a href="#products" className="text-green-100 hover:text-white transition-colors duration-300 flex items-center group">
                     <span className="w-1.5 h-1.5 bg-green-400 rounded-full mr-2 group-hover:scale-125 transition-transform"></span>
                     Products
-                  </a>
+                    </a>
                 </li>
                 <li>
-                  <a href="#" className="text-green-100 hover:text-white transition-colors duration-300 flex items-center group">
+                  <a href="#about" className="text-green-100 hover:text-white transition-colors duration-300 flex items-center group">
                     <span className="w-1.5 h-1.5 bg-green-400 rounded-full mr-2 group-hover:scale-125 transition-transform"></span>
                     About Us
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-green-100 hover:text-white transition-colors duration-300 flex items-center group">
+                  <a href="#contact" className="text-green-100 hover:text-white transition-colors duration-300 flex items-center group">
                     <span className="w-1.5 h-1.5 bg-green-400 rounded-full mr-2 group-hover:scale-125 transition-transform"></span>
                     Contact
                   </a>

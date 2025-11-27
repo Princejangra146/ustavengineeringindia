@@ -261,148 +261,143 @@ const ProductDetails = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Back Button */}
       <div className="container mx-auto px-4 py-6">
-        <button
-          onClick={() => navigate(-1)}
-          className="flex items-center text-gray-600 hover:text-gray-900 transition-colors"
-        >
-          <ArrowLeft className="h-5 w-5 mr-1" />
-          Back to Products
-        </button>
-      </div>
-
-      {/* Main Product Section */}
-      <div className="container mx-auto px-4 py-8">
-        <div className="bg-white rounded-xl shadow-sm overflow-hidden">
-          <div className="md:flex">
-            {/* Product Image */}
-            <div className="md:w-1/2 p-6 md:p-8">
-              <div className="h-96 bg-gray-50 rounded-lg flex items-center justify-center p-4">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="max-h-full max-w-full object-contain"
-                />
-              </div>
-            </div>
-
-            {/* Product Info */}
-            <div className="md:w-1/2 p-6 md:p-8 border-t md:border-t-0 md:border-l border-gray-200">
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">{product.name}</h1>
-              
-              {/* Price Section */}
-              <div className="mt-4">
-                <div className="flex items-center">
-                  <span className="text-3xl font-bold text-green-700">₹{product.price}/-</span>
-                  {product.originalPrice > product.price && (
-                    <>
-                      <span className="ml-3 text-xl text-gray-400 line-through">₹{product.originalPrice}/-</span>
-                      <span className="ml-3 bg-green-100 text-green-800 text-sm font-medium px-2.5 py-0.5 rounded-full">
-                        {discountPercentage}% OFF
-                      </span>
-                    </>
-                  )}
-                </div>
-                {product.originalPrice > product.price && (
-                  <p className="mt-1 text-sm text-green-700">
-                    You save ₹{product.originalPrice - product.price} ({discountPercentage}%)
-                  </p>
-                )}
-              </div>
-
-              {/* Description */}
-              <div className="mt-6">
-                <p className="text-gray-600">{product.description}</p>
-              </div>
-
-              {/* Quantity Selector */}
-              <div className="mt-6">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Quantity
-                </label>
-                <div className="flex items-center">
-                  <button
-                    onClick={decrementQuantity}
-                    className="w-10 h-10 flex items-center justify-center border border-gray-300 rounded-l-md bg-gray-50 text-gray-600 hover:bg-gray-100"
-                  >
-                    <Minus className="h-4 w-4" />
-                  </button>
-                  <div className="w-16 h-10 flex items-center justify-center border-t border-b border-gray-300 bg-white text-center">
-                    {quantity}
-                  </div>
-                  <button
-                    onClick={incrementQuantity}
-                    className="w-10 h-10 flex items-center justify-center border border-gray-300 rounded-r-md bg-gray-50 text-gray-600 hover:bg-gray-100"
-                  >
-                    <Plus className="h-4 w-4" />
-                  </button>
-                </div>
-              </div>
-
-            {/* Add to Cart Button */}
-<div className="mt-8 space-y-3">
-  <button
-    onClick={handleAddToCart}
-    className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-6 rounded-md transition-colors flex items-center justify-center"
-  >
-    <ShoppingCart className="h-5 w-5 mr-2" />
-    Add to Cart
-  </button>
-  
-  {/* Show Checkout button only if there are items in cart */}
-  {showAddedToCart && (
-    <>
-      <button
-        onClick={() => navigate('/checkout')}
-        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-md transition-colors flex items-center justify-center"
-      >
-        Proceed to Checkout
-      </button>
-      <div className="p-3 bg-green-50 text-green-700 rounded-md flex items-center">
-        <CheckCircle className="h-5 w-5 mr-2 text-green-500" />
-        <span>Item added to cart!</span>
-      </div>
-    </>
-  )}
-</div>
-
-              {/* Features */}
-              <div className="mt-8">
-                <h3 className="text-lg font-medium text-gray-900 mb-3">Key Features</h3>
-                <ul className="space-y-2">
-                  {product.features.map((feature, index) => (
-                    <li key={index} className="flex items-start">
-                      <CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                      <span className="text-gray-600">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* Specifications */}
-          <div className="border-t border-gray-200 p-6 md:p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Specifications</h2>
-            <div className="bg-gray-50 rounded-lg overflow-hidden">
-              <table className="min-w-full divide-y divide-gray-200">
-                <tbody className="bg-white divide-y divide-gray-200">
-                  {Object.entries(product.specifications).map(([key, value]) => (
-                    <tr key={key} className="hover:bg-gray-50">
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 w-1/3">
-                        {key}
-                      </td>
-                      <td className="px-6 py-4 whitespace-pre-line text-sm text-gray-500">
-                        {value}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-4">
+            <button onClick={() => navigate(-1)} className="flex items-center text-gray-600 hover:text-gray-900 transition-colors">
+              <ArrowLeft className="h-5 w-5 mr-2" />
+              <span className="text-sm">Back to Products</span>
+            </button>
+            <div className="text-sm text-gray-500">/</div>
+            <div className="text-sm font-medium text-gray-900">{product.name}</div>
           </div>
         </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Left: Image + details */}
+          <div className="lg:col-span-2">
+            <div className="bg-white rounded-2xl p-6 shadow-sm">
+              <div className="flex flex-col md:flex-row md:items-start gap-6">
+                <div className="w-full md:w-1/2 flex items-center justify-center bg-gray-50 rounded-lg p-6">
+                  <img src={product.image} alt={product.name} className="max-h-96 object-contain" />
+                </div>
+                <div className="md:w-1/2">
+                  <h1 className="text-3xl font-extrabold text-gray-900">{product.name}</h1>
+                  <p className="text-gray-600 mt-3">{product.description}</p>
+
+                  <div className="mt-6 flex items-center gap-4">
+                    <div>
+                      <div className="text-3xl font-bold text-green-700">₹{product.price}/-</div>
+                      {product.originalPrice > product.price && (
+                        <div className="flex items-center gap-3 mt-1">
+                          <div className="text-sm text-gray-400 line-through">₹{product.originalPrice}/-</div>
+                          <div className="text-sm bg-green-100 text-green-800 font-medium px-2 py-0.5 rounded-full">{discountPercentage}% OFF</div>
+                        </div>
+                      )}
+                    </div>
+                    <div className="ml-auto text-sm text-gray-500">In Stock</div>
+                  </div>
+
+                  {/* Features grid */}
+                  <div className="mt-8">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Key Features</h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {product.features.map((feature, idx) => (
+                        <div key={idx} className="flex items-start gap-3">
+                          <div className="mt-1 text-green-600">
+                            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                          </div>
+                          <div className="text-gray-600 text-sm">{feature}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Specifications */}
+            <div className="mt-6 bg-white rounded-2xl shadow-sm p-6">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">Specifications</h2>
+              <div className="overflow-x-auto">
+                <table className="min-w-full divide-y divide-gray-200">
+                  <tbody className="bg-white divide-y divide-gray-200">
+                    {Object.entries(product.specifications).map(([key, value]) => (
+                      <tr key={key} className="hover:bg-gray-50">
+                        <td className="px-4 py-3 whitespace-nowrap text-sm font-medium text-gray-900 w-1/3 align-top">{key}</td>
+                        <td className="px-4 py-3 text-sm text-gray-600">{value}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          {/* Right: Sticky Purchase Card (hidden on mobile) */}
+          <aside className="hidden lg:block lg:col-span-1">
+            <div className="sticky top-24 bg-white rounded-2xl shadow-md p-6">
+              <div className="flex items-center justify-between">
+                <div className="text-sm text-gray-500">Price</div>
+                <div className="text-xl font-bold text-green-700">₹{product.price}/-</div>
+              </div>
+
+              {product.originalPrice > product.price && (
+                <div className="mt-2 text-sm text-gray-400 line-through">₹{product.originalPrice}/-</div>
+              )}
+
+              <div className="mt-4">
+                <label className="block text-sm font-medium text-gray-700 mb-2">Quantity</label>
+                <div className="flex items-center">
+                  <button onClick={decrementQuantity} className="w-10 h-10 flex items-center justify-center border border-gray-200 rounded-l-md bg-gray-50 text-gray-700 hover:bg-gray-100"><Minus className="h-4 w-4" /></button>
+                  <div className="w-16 h-10 flex items-center justify-center border-t border-b border-gray-200 bg-white">{quantity}</div>
+                  <button onClick={incrementQuantity} className="w-10 h-10 flex items-center justify-center border border-gray-200 rounded-r-md bg-gray-50 text-gray-700 hover:bg-gray-100"><Plus className="h-4 w-4" /></button>
+                </div>
+              </div>
+
+              <div className="mt-6 space-y-3">
+                <button onClick={handleAddToCart} className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-green-600 to-green-500 text-white font-semibold rounded-lg shadow-md hover:from-green-700 hover:to-green-600 transition-all">
+                  <ShoppingCart className="h-5 w-5" />
+                  Add to Cart
+                </button>
+
+                {showAddedToCart && (
+                  <div className="p-3 bg-green-50 text-green-700 rounded-md flex items-center gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-500" />
+                    <div className="flex-1 text-sm">Item added to cart!</div>
+                    <button onClick={() => navigate('/checkout')} className="text-sm text-blue-600 font-medium">Checkout</button>
+                  </div>
+                )}
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+      {/* Mobile Add to Cart Bar (visible only on small screens) */}
+      <div className="lg:hidden fixed bottom-4 left-4 right-4 z-50">
+        <div className="bg-white rounded-xl shadow-lg p-3 flex items-center gap-3">
+          <div className="flex items-center border rounded-md overflow-hidden">
+            <button onClick={decrementQuantity} className="w-10 h-10 flex items-center justify-center bg-gray-50 text-gray-700"><Minus className="h-4 w-4" /></button>
+            <div className="w-12 text-center text-sm">{quantity}</div>
+            <button onClick={incrementQuantity} className="w-10 h-10 flex items-center justify-center bg-gray-50 text-gray-700"><Plus className="h-4 w-4" /></button>
+          </div>
+
+          <button onClick={handleAddToCart} className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 bg-green-600 text-white font-semibold rounded-lg">
+            <ShoppingCart className="h-4 w-4" />
+            Add to Cart
+          </button>
+        </div>
+
+        {showAddedToCart && (
+          <div className="mt-2 px-2">
+            <div className="bg-green-50 text-green-700 rounded-md p-2 text-sm flex items-center justify-between">
+              <div className="flex items-center gap-2"><CheckCircle className="h-4 w-4 text-green-500"/> Item added to cart!</div>
+              <button onClick={() => navigate('/checkout')} className="text-sm text-blue-600 font-medium">Checkout</button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

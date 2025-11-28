@@ -34,8 +34,8 @@ const SafetyUnitPage = () => {
 
   // Safety unit products (single product)
   const products: Product[] = [
-    { id: 101, name: 'Safety Unit A', description: 'Basic safety unit for small systems', price: 850, originalPrice: 1062, image: '/pic2.png' },
-     { id: 101, name: 'Safety Unit A', description: 'Basic safety unit for small systems', price: 850, originalPrice: 1062, image: '/pic2.png' }
+    { id: 101, name: 'UEI-GSU-904', description: 'Basic safety unit for small systems', price: 2375, originalPrice: 2800, image: '/safety14.png' },
+     { id: 101, name: 'UEI-DES-9', description: 'Basic safety unit for small systems', price: 4465, originalPrice: 4800, image: '/safety15.png' }
   ];
 
   const addToCart = (product: Product, e: React.MouseEvent) => {

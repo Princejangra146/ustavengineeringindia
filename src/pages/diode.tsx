@@ -34,8 +34,8 @@ const DiodePage = () => {
 
   // Two diode products
   const products: Product[] = [
-    { id: 501, name: 'Diode D1', description: 'High current diode', price: 120, originalPrice: 150, image: '/pic4.png' },
-    { id: 502, name: 'Diode D2', description: 'Fast recovery diode', price: 180, originalPrice: 225, image: '/pic2.png' }
+    { id: 501, name: 'DIODE 50AMP', description: 'High current diode', price: 90.67, originalPrice: 150, image: '/d36.png' },
+    { id: 502, name: 'DIODE 26AMP', description: 'Fast recovery diode', price: 61.75, originalPrice: 130, image: '/d37.png' }
   ];
 
   const addToCart = (product: Product, e: React.MouseEvent) => {

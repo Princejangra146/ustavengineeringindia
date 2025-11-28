@@ -34,8 +34,8 @@ const LlopPage = () => {
 
   // Two LLOP products
   const products: Product[] = [
-    { id: 401, name: 'LLOP Model A', description: 'Standard LLOP unit', price: 980, originalPrice: 1225, image: '/pic4.png' },
-    { id: 402, name: 'LLOP Model B', description: 'Advanced LLOP with extra features', price: 1280, originalPrice: 1600, image: '/pic2.png' }
+    { id: 401, name: 'LLOP', description: 'Standard LLOP unit', price: 902.5, originalPrice: 1225, image: '/l35.png' },
+    { id: 402, name: 'LLOP ', description: 'For Mahindra 3PIN', price: 1280, originalPrice: 1600, image: '/l62.png' }
   ];
 
   const addToCart = (product: Product, e: React.MouseEvent) => {

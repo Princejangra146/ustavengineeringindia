@@ -34,7 +34,7 @@ const StopUnitPage = () => {
 
   // One Stop Unit product
   const products: Product[] = [
-    { id: 1001, name: 'Stop Unit SU-1', description: 'Industrial stop/brake unit for machinery control', price: 1800, originalPrice: 2250, image: '/pic4.png' }
+    { id: 1001, name: 'AUTOMATIC STOP UNIT FOR GENERATOR', description: 'Industrial stop/brake unit for machinery control', price: 494, originalPrice: 750, image: '/su54.png' }
   ];
 
   const addToCart = (product: Product, e: React.MouseEvent) => {

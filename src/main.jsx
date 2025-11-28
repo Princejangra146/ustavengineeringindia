@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/home';
 import AVRPage from './pages/avr';
-import ProductDetails from './pages/productDetails';
+import ProductDetails from './pages/details';
 import SafetyUnit from './pages/safetyUnit';
 import Solenoid from './pages/solenoid';
 import Diode from './pages/diode';

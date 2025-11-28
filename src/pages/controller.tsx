@@ -34,12 +34,12 @@ const ControllerPage = () => {
 
   // Six Controller products
   const products: Product[] = [
-    { id: 1101, name: 'Controller C-1', description: 'Basic industrial controller unit', price: 1200, originalPrice: 1500, image: '/pic4.png' },
-    { id: 1102, name: 'Controller C-2', description: 'Advanced process controller', price: 1800, originalPrice: 2250, image: '/pic2.png' },
-    { id: 1103, name: 'Controller C-3', description: 'Programmable logic controller', price: 2200, originalPrice: 2750, image: '/pic4.png' },
-    { id: 1104, name: 'Controller C-4', description: 'Compact control system', price: 1500, originalPrice: 1875, image: '/pic2.png' },
-    { id: 1105, name: 'Controller C-5', description: 'Multi-channel controller', price: 2500, originalPrice: 3125, image: '/pic4.png' },
-    { id: 1106, name: 'Controller C-6', description: 'Industrial automation controller', price: 2000, originalPrice: 2500, image: '/pic2.png' }
+    { id: 1101, name: 'CONTROLLER G934V1/G934V2', description: 'Basic industrial controller unit', price: 10070, originalPrice: 10500, image: '/c19.png' },
+    { id: 1102, name: 'CONTROLLER KG 541', description: 'Advanced process controller', price: 5525, originalPrice: 6250, image: '/c20.png' },
+    { id: 1103, name: 'CONTROLLER GPS 4530', description: 'Programmable logic controller', price: 4275, originalPrice: 4750, image: '/c21.png' },
+    { id: 1104, name: 'CONTROLLER GC 1111', description: 'Compact control system', price: 9120, originalPrice: 9875, image: '/c41.png' },
+    { id: 1105, name: 'CONTROLLER DSE 4520', description: 'Multi-channel controller', price: 6175, originalPrice: 6525, image: '/c55.png' },
+    { id: 1106, name: 'CONTROLLER 1202', description: 'Industrial automation controller', price: 14725, originalPrice: 15000, image: '/c60.png' }
   ];
 
   const addToCart = (product: Product, e: React.MouseEvent) => {

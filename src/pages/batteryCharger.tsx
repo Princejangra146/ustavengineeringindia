@@ -34,7 +34,7 @@ const BatteryChargerPage = () => {
 
   // Single battery charger product
   const products: Product[] = [
-    { id: 301, name: 'Battery Charger X', description: 'Reliable battery charger for industrial use', price: 2200, originalPrice: 2750, image: '/pic7.png' }
+    { id: 301, name: 'SMPS 12/24v 10AMP', description: 'Reliable battery charger for industrial use', price: 1187.5, originalPrice: 1500, image: '/b29.jpg' }
   ];
 
   const addToCart = (product: Product, e: React.MouseEvent) => {

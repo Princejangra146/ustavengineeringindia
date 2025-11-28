@@ -44,26 +44,24 @@ const AVRPage = () => {
     { id: 3, name: "R-120", description: "High-power voltage regulator", price: 650, originalPrice: 812, image: "/pic4.png" },
     { id: 4, name: "UEI-A10", description: "Professional Grade AVR", price: 900, originalPrice: 1125, image: "/pic5.png" },
     { id: 5, name: "UEI-A4", description: "Industrial AVR", price: 1250, originalPrice: 1562, image: "/pic7.png" },
-    { id: 6, name: "UEI-SX460", description: "AVR for Brush less Alternator", price: 480, originalPrice: 600, image: "/pic2.png" },
-    { id: 7, name: "AVR-07", description: "Compact AVR unit", price: 520, originalPrice: 650, image: "/UEI.png" },
-    { id: 8, name: "AVR-08", description: "Industrial grade AVR", price: 780, originalPrice: 975, image: "/pic5.png" },
-    { id: 9, name: "AVR-09", description: "High stability AVR", price: 890, originalPrice: 1112, image: "/pic4.png" },
-    { id: 10, name: "AVR-10", description: "Standard AVR model", price: 640, originalPrice: 800, image: "/pic2.png" },
-    { id: 11, name: "AVR-11", description: "Heavy-duty AVR", price: 1320, originalPrice: 1650, image: "/pic7.png" },
-    { id: 12, name: "AVR-12", description: "Precision AVR", price: 720, originalPrice: 900, image: "/UEI.png" },
-    { id: 13, name: "AVR-13", description: "Compact automatic regulator", price: 560, originalPrice: 700, image: "/pic2.png" },
-    { id: 14, name: "AVR-14", description: "Industrial AVR with cooling", price: 980, originalPrice: 1225, image: "/pic5.png" },
-    { id: 15, name: "AVR-15", description: "High efficiency AVR", price: 1100, originalPrice: 1375, image: "/pic4.png" },
-    { id: 16, name: "AVR-16", description: "Economy AVR model", price: 430, originalPrice: 537, image: "/UEI.png" },
-    { id: 17, name: "AVR-17", description: "Rack-mount AVR", price: 1450, originalPrice: 1812, image: "/pic7.png" },
-    { id: 18, name: "AVR-18", description: "Micro AVR unit", price: 399, originalPrice: 499, image: "/pic2.png" },
-    { id: 19, name: "AVR-19", description: "Long-life AVR", price: 1020, originalPrice: 1275, image: "/pic5.png" },
-    { id: 20, name: "AVR-20", description: "Premium AVR", price: 1580, originalPrice: 1975, image: "/pic4.png" },
-    { id: 21, name: "AVR-21", description: "Compact AVR", price: 475, originalPrice: 595, image: "/UEI.png" },
-    { id: 22, name: "AVR-22", description: "Standard AVR", price: 620, originalPrice: 775, image: "/pic2.png" },
-    { id: 23, name: "AVR-23", description: "High-power AVR", price: 1350, originalPrice: 1688, image: "/pic7.png" },
-    { id: 24, name: "AVR-24", description: "Economy AVR", price: 410, originalPrice: 512, image: "/pic4.png" },
-    { id: 25, name: "AVR-25", description: "Industrial AVR", price: 1240, originalPrice: 1550, image: "/pic5.png" }
+    { id: 6, name: "UEI-SX460", description: "AVR for Brush less Alternator", price: 1472.5, originalPrice: 1767, image: "/avr8.png" },
+    { id: 7, name: "UEI-SX440", description: "Compact AVR unit", price: 3610, originalPrice: 4332, image: "/avr9.png" },
+    { id: 8, name: "UEI-AO4", description: "Industrial grade AVR", price: 332.5, originalPrice: 398.4, image: "/avr11.png" },
+    { id: 9, name: "UEI-JYTOI AVR", description: "High stability AVR", price: 7125, originalPrice: 8550, image: "/avr12.png" },
+    { id: 10, name: "UEI- PANEL AVR", description: "Standard AVR model", price: 1472.5, originalPrice: 1767, image: "/avr13.png" },
+    { id: 11, name: "HONDA AVR ", description: "Heavy-duty AVR", price: 931, originalPrice: 1117.2, image: "/avr17.png" },
+    { id: 12, name: "HONDA AVR", description: "Precision AVR", price: 1159, originalPrice: 1370, image: "/avr18.png" },
+    { id: 13, name: "AVR SX400", description: "Compact automatic regulator", price: 560, originalPrice: 700, image: "/pic2.png" },
+    { id: 14, name: "AVR R446", description: "Industrial AVR with cooling", price: 8075, originalPrice: 8550, image: "/avr43.png" },
+    { id: 15, name: "AVR A6 SLIPRING ALTERNATOR", description: "High efficiency AVR", price: 1472.5, originalPrice: 1950, image: "/avr47.png" },
+    { id: 16, name: "AVR DSR", description: "Economy AVR model", price: 2470, originalPrice: 2890, image: "/avr48.png" },
+    { id: 17, name: "AVR-SX460", description: "Rack-mount AVR", price: 1472.5, originalPrice: 1812, image: "/avr49.png" },
+    { id: 18, name: "AVR-7/6", description: "Micro AVR unit", price: 2470, originalPrice: 3000, image: "/avr50.png" },
+  
+   
+   
+   
+    
   ];
 
   const addToCart = (product: Product, e: React.MouseEvent) => {

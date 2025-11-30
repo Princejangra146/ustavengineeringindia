@@ -191,10 +191,10 @@ const Home = () => {
 }`}>
         <div className="container mx-auto px-4 flex justify-between items-center">
           <span className="font-semibold tracking-wide text-sm">🛍️ Shop Now</span>
-          <div className="flex items-center gap-2 hover:text-green-100 transition-colors cursor-pointer text-sm">
+          <a href="tel:+919911231643" className="flex items-center gap-2 hover:text-green-100 transition-colors text-sm">
             <Phone size={14} />
             <span className="font-medium">+91 9911231643</span>
-          </div>
+          </a>
         </div>
       </div>
 

@@ -34,7 +34,7 @@ const HardnessWirePage = () => {
 
   // One Hardness Wire product
   const products: Product[] = [
-    { id: 901, name: 'HARDNESS WIRE', description: 'Premium hardness test wire for industrial applications', price: 1425, originalPrice: 1700, image: '/h53.png' }
+    { id: 901, name: 'UEI-HARDNESS WIRE', description: 'Premium hardness test wire for industrial applications', price: 1425, originalPrice: 1700, image: '/h53.png' }
   ];
 
   const addToCart = (product: Product, e: React.MouseEvent) => {

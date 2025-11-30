@@ -34,7 +34,7 @@ const PanelPage = () => {
 
   // One Panel product
   const products: Product[] = [
-    { id: 1201, name: 'Control Panel P-1', description: 'Industrial control panel with integrated systems', price: 3500, originalPrice: 4375, image: '/pic4.png' }
+    { id: 1201, name: 'UEI-Control Panel P-1', description: 'Industrial control panel with integrated systems', price: 3500, originalPrice: 4375, image: '/p45.jpg' }
   ];
 
   const addToCart = (product: Product, e: React.MouseEvent) => {

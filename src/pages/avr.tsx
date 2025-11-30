@@ -39,24 +39,25 @@ const AVRPage = () => {
 
   // Sample AVR products data
   const products: Product[] = [
-    { id: 1, name: "AVR (UEI-01)", description: "Basic Automatic Voltage Regulator", price: 550, originalPrice: 688, image: "/UEI.png" },
-    { id: 2, name: "TAVR-20", description: "Advanced Automatic Voltage Regulator", price: 600, originalPrice: 750, image: "/pic2.png" },
-    { id: 3, name: "R-120", description: "High-power voltage regulator", price: 650, originalPrice: 812, image: "/pic4.png" },
+    { id: 1, name: "UEI-AVR (UEI-01)", description: "Basic Automatic Voltage Regulator", price: 550, originalPrice: 688, image: "/UEI.png" },
+    { id: 2, name: "UEI-T-20", description: "Advanced Automatic Voltage Regulator", price: 600, originalPrice: 750, image: "/pic2.png" },
+    { id: 3, name: "UEI-120", description: "High-power voltage regulator", price: 650, originalPrice: 812, image: "/pic4.png" },
     { id: 4, name: "UEI-A10", description: "Professional Grade AVR", price: 900, originalPrice: 1125, image: "/pic5.png" },
     { id: 5, name: "UEI-A4", description: "Industrial AVR", price: 1250, originalPrice: 1562, image: "/pic7.png" },
     { id: 6, name: "UEI-SX460", description: "AVR for Brush less Alternator", price: 1472.5, originalPrice: 1767, image: "/avr8.png" },
     { id: 7, name: "UEI-SX440", description: "Compact AVR unit", price: 3610, originalPrice: 4332, image: "/avr9.png" },
-    { id: 8, name: "UEI-AO4", description: "Industrial grade AVR", price: 332.5, originalPrice: 398.4, image: "/avr11.png" },
-    { id: 9, name: "UEI-JYTOI AVR", description: "High stability AVR", price: 7125, originalPrice: 8550, image: "/avr12.png" },
+    { id: 8, name: "UEI-AO4", description: "Industrial grade AVR", price: 332.5, originalPrice: 398.4, image: "/avr12.png" },
+    { id: 9, name: "UEI-JYTOI AVR", description: "High stability AVR", price: 7125, originalPrice: 8550, image: "/jyoti.jpg" },
     { id: 10, name: "UEI- PANEL AVR", description: "Standard AVR model", price: 1472.5, originalPrice: 1767, image: "/avr13.png" },
-    { id: 11, name: "HONDA AVR ", description: "Heavy-duty AVR", price: 931, originalPrice: 1117.2, image: "/avr17.png" },
-    { id: 12, name: "HONDA AVR", description: "Precision AVR", price: 1159, originalPrice: 1370, image: "/avr18.png" },
-    { id: 13, name: "AVR SX400", description: "Compact automatic regulator", price: 560, originalPrice: 700, image: "/pic2.png" },
-    { id: 14, name: "AVR R446", description: "Industrial AVR with cooling", price: 8075, originalPrice: 8550, image: "/avr43.png" },
-    { id: 15, name: "AVR A6 SLIPRING ALTERNATOR", description: "High efficiency AVR", price: 1472.5, originalPrice: 1950, image: "/avr47.png" },
-    { id: 16, name: "AVR DSR", description: "Economy AVR model", price: 2470, originalPrice: 2890, image: "/avr48.png" },
-    { id: 17, name: "AVR-SX460", description: "Rack-mount AVR", price: 1472.5, originalPrice: 1812, image: "/avr49.png" },
-    { id: 18, name: "AVR-7/6", description: "Micro AVR unit", price: 2470, originalPrice: 3000, image: "/avr50.png" },
+    { id: 11, name: "UEI-HONDA AVR ", description: "Heavy-duty AVR", price: 931, originalPrice: 1117.2, image: "/avr17.png" },
+    { id: 12, name: "UEI-HONDA AVR", description: "Precision AVR", price: 1159, originalPrice: 1370, image: "/avr18.png" },
+    { id: 13, name: "UEI-AUTOMATIC GENERATOR STOP UNIT", description: "Compact automatic regulator", price: 560, originalPrice: 700, image: "/Sp.jpg" },
+    { id: 14, name: "UEI-AVR R446", description: "Industrial AVR with cooling", price: 8075, originalPrice: 8550, image: "/avr43.png" },
+    { id: 15, name: "UEI-AVR A6 SLIPRING ALTERNATOR", description: "High efficiency AVR", price: 1472.5, originalPrice: 1950, image: "/avr47.png" },
+    { id: 16, name: "UEI-AVR DSR", description: "Economy AVR model", price: 2470, originalPrice: 2890, image: "/avr48.png" },
+    { id: 17, name: "UEI-AVR-SX460", description: "Rack-mount AVR", price: 1472.5, originalPrice: 1812, image: "/avr49.png" },
+    { id: 18, name: "UEI-AVR-7/6", description: "Micro AVR unit", price: 2470, originalPrice: 3000, image: "/avr50.png" },
+     { id: 19, name: " UEI-6M", description: "Micro AVR unit", price: 2400, originalPrice: 3000, image: "/avr11.png" },
   
    
    

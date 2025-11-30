@@ -34,8 +34,8 @@ const RectifierPage = () => {
 
   // Two Rectifier products
   const products: Product[] = [
-    { id: 1301, name: 'GENERTOR RECTIFIER', description: 'Single phase industrial rectifier', price: 161.5, originalPrice: 290, image: '/rc28.png' },
-    { id: 1302, name: 'RECTIFIER/3510', description: 'Three phase power rectifier system', price: 57, originalPrice: 115, image: '/rc34.png' }
+    { id: 1301, name: 'UEI-GENERTOR RECTIFIER', description: 'Single phase industrial rectifier', price: 161.5, originalPrice: 290, image: '/rc28.png' },
+    { id: 1302, name: 'UEI-RECTIFIER/3510', description: 'Three phase power rectifier system', price: 57, originalPrice: 115, image: '/rc34.png' }
   ];
 
   const addToCart = (product: Product, e: React.MouseEvent) => {

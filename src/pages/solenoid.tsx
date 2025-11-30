@@ -34,12 +34,12 @@ const SolenoidPage = () => {
 
   // Solenoid products (4 items)
   const products: Product[] = [
-    { id: 201, name: 'HA 4R SOLENOID ', description: 'Standard solenoid valve', price: 1330, originalPrice: 1550, image: '/s23.jpg' },
-    { id: 202, name: '4BT-6BT SOLENOID', description: 'High flow solenoid valve', price: 1330, originalPrice: 1550, image: '/s24.jpg' },
-    { id: 203, name: 'SOLENOID ', description: 'Use for EICHER 15KVA', price: 2280, originalPrice: 2500, image: '/s25.png' },
-    { id: 204, name: 'SOLENOID ', description: 'Use for EICHER 25KVA', price: 2280, originalPrice: 2500, image: '/s27.png' },
-    { id: 205, name: 'SOLENOID', description: 'Use for Mahindra', price: 1330, originalPrice: 1612, image: '/s27.png' },
-    { id: 206, name: 'SOLENOID 12V', description: 'For 2DI, 3DI, 4DI', price: 2375, originalPrice: 2700, image: '/s57.png' }
+    { id: 201, name: '  UEI-HA 4R SOLENOID ', description: 'Standard solenoid valve', price: 1330, originalPrice: 1550, image: '/s23.jpg' },
+    { id: 202, name: 'UEI-4BT-6BT SOLENOID', description: 'High flow solenoid valve', price: 1330, originalPrice: 1550, image: '/s24.jpg' },
+    { id: 203, name: 'UEI-SOLENOID ', description: 'Use for EICHER 15KVA', price: 2280, originalPrice: 2500, image: '/s25.png' },
+    { id: 204, name: 'UEI-SOLENOID ', description: 'Use for EICHER 25KVA', price: 2280, originalPrice: 2500, image: '/s26.jpg' },
+    { id: 205, name: 'UEI-SOLENOID', description: 'Use for Mahindra', price: 1330, originalPrice: 1612, image: '/s27.png' },
+    { id: 206, name: 'UEI-SOLENOID 12V', description: 'For 2DI, 3DI, 4DI', price: 2375, originalPrice: 2700, image: '/s57.png' }
   ];
 
   const addToCart = (product: Product, e: React.MouseEvent) => {

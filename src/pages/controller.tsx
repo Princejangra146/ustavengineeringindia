@@ -34,12 +34,12 @@ const ControllerPage = () => {
 
   // Six Controller products
   const products: Product[] = [
-    { id: 1101, name: 'CONTROLLER G934V1/G934V2', description: 'Basic industrial controller unit', price: 10070, originalPrice: 10500, image: '/c19.png' },
-    { id: 1102, name: 'CONTROLLER KG 541', description: 'Advanced process controller', price: 5525, originalPrice: 6250, image: '/c20.png' },
-    { id: 1103, name: 'CONTROLLER GPS 4530', description: 'Programmable logic controller', price: 4275, originalPrice: 4750, image: '/c21.png' },
-    { id: 1104, name: 'CONTROLLER GC 1111', description: 'Compact control system', price: 9120, originalPrice: 9875, image: '/c41.png' },
-    { id: 1105, name: 'CONTROLLER DSE 4520', description: 'Multi-channel controller', price: 6175, originalPrice: 6525, image: '/c55.png' },
-    { id: 1106, name: 'CONTROLLER 1202', description: 'Industrial automation controller', price: 14725, originalPrice: 15000, image: '/c60.png' }
+    { id: 1101, name: 'UEI-CONTROLLER G934V1/G934V2', description: 'Basic industrial controller unit', price: 10070, originalPrice: 10500, image: '/c19.png' },
+    { id: 1102, name: 'UEI-CONTROLLER KG 541', description: 'Advanced process controller', price: 5525, originalPrice: 6250, image: '/c20.png' },
+    { id: 1103, name: 'UEI-CONTROLLER GPS 4530', description: 'Programmable logic controller', price: 4275, originalPrice: 4750, image: '/c21.png' },
+    { id: 1104, name: 'UEI-CONTROLLER GC 1111', description: 'Compact control system', price: 9120, originalPrice: 9875, image: '/c41.png' },
+    { id: 1105, name: 'UEI-CONTROLLER DSE 4520', description: 'Multi-channel controller', price: 6175, originalPrice: 6525, image: '/c55.png' },
+    { id: 1106, name: 'UEI-CONTROLLER 1202', description: 'Industrial automation controller', price: 14725, originalPrice: 15000, image: '/c60.png' }
   ];
 
   const addToCart = (product: Product, e: React.MouseEvent) => {

@@ -34,15 +34,15 @@ const RRAPage = () => {
 
   // Nine RRA products
   const products: Product[] = [
-    { id: 701, name: 'RRA/L4', description: 'Industrial RRA controller', price: 2441.5, originalPrice: 3125, image: '/r32.png' },
-    { id: 702, name: 'RRA/4AV366', description: 'Advanced RRA system', price: 4275, originalPrice: 4800, image: '/r33.png' },
-    { id: 703, name: 'RRA TRIANGULAR', description: 'Premium RRA device', price: 1254, originalPrice: 1875, image: '/r38.png' },
-    { id: 704, name: 'RRA FOR KOEL', description: 'Compact RRA module', price: 1140, originalPrice: 1750, image: '/r51.png' },
-    { id: 705, name: 'RRA FOR LSA 412', description: 'High-performance RRA', price: 2422.5, originalPrice: 3125, image: '/r52.png' },
-    { id: 706, name: 'RRA MXY & MXG 5512', description: 'Standard RRA controller', price: 1130, originalPrice: 1500, image: '/r56.png' },
-    { id: 707, name: 'RRA FOR STAMFORD UC22', description: 'Precision RRA system', price: 2090, originalPrice: 2625, image: '/r58.png' },
-    { id: 708, name: 'RRA FOR CROMFTOM/125', description: 'Reliable RRA unit', price: 1159, originalPrice: 2250, image: '/r59.png' },
-    { id: 709, name: 'RRA FOR KOAL-4AB260', description: 'Professional RRA device', price: 5225, originalPrice: 6000, image: '/r61.png' }
+    { id: 701, name: 'UEI-RRA/L4', description: 'Industrial RRA controller', price: 2441.5, originalPrice: 3125, image: '/r32.png' },
+    { id: 702, name: 'UEI-RRA/4AV366', description: 'Advanced RRA system', price: 4275, originalPrice: 4800, image: '/r33.png' },
+    { id: 703, name: 'UEI-RRA TRIANGULAR', description: 'Premium RRA device', price: 1254, originalPrice: 1875, image: '/r38.png' },
+    { id: 704, name: 'UEI-RRA FOR KOEL', description: 'Compact RRA module', price: 1140, originalPrice: 1750, image: '/r51.png' },
+    { id: 705, name: 'UEI-RRA FOR LSA 412', description: 'High-performance RRA', price: 2422.5, originalPrice: 3125, image: '/r52.png' },
+    { id: 706, name: 'UEI-RRA MXY & MXG 5512', description: 'Standard RRA controller', price: 1130, originalPrice: 1500, image: '/r56.png' },
+    { id: 707, name: 'UEI-RRA FOR STAMFORD UC22', description: 'Precision RRA system', price: 2090, originalPrice: 2625, image: '/r58.png' },
+    { id: 708, name: 'UEI-RRA FOR CROMFTOM/125', description: 'Reliable RRA unit', price: 1159, originalPrice: 2250, image: '/r59.png' },
+    { id: 709, name: 'UEI-RRA FOR KOAL-4AB260', description: 'Professional RRA device', price: 5225, originalPrice: 6000, image: '/r61.png' }
   ];
 
   const addToCart = (product: Product, e: React.MouseEvent) => {

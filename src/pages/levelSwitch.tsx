@@ -34,8 +34,8 @@ const LevelSwitchPage = () => {
 
   // Two Level Switch products
   const products: Product[] = [
-    { id: 801, name: 'Level Switch LS-1', description: 'Liquid level control switch', price: 450, originalPrice: 560, image: '/pic4.png' },
-    { id: 802, name: 'Level Switch LS-2', description: 'Digital level detection system', price: 650, originalPrice: 810, image: '/pic2.png' }
+    { id: 801, name: 'UEI-CABLE TYPE BALLOON LEVEL SWITCH', description: 'Liquid level control switch', price: 2500, originalPrice: 3560, image: '/l1.jpg' },
+    { id: 802, name: 'UEI-TOP CABLE LEVEL SWITCH', description: 'Digital level detection system', price: 2500, originalPrice: 2810, image: '/l3.jpg' }
   ];
 
   const addToCart = (product: Product, e: React.MouseEvent) => {
